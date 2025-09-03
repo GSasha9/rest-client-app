@@ -1,0 +1,188 @@
+@use './_variables.scss' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-body);
+  min-height: 100vh;
+}
+
+.input {
+  width: 200px;
+  padding: 6px 8px;
+  border: none;
+  border: 1px solid var(--border-input);
+  border-radius: 4px;
+
+  font-size: 16px;
+  color: var(--text-input);
+
+  background-color: var(--bg-input);
+  box-shadow: inset 2px 2px 1px 1px var(--shadow-input);
+
+  &:focus {
+    background-color: var(--bg-input-focus);
+    outline: none;
+  }
+}
+
+a {
+  color: var(--text-color-dark);
+  text-decoration: none;
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--border-input);
+  }
+}
+
+.default-btn {
+  cursor: pointer;
+
+  padding: 4px 12px;
+  border-radius: 4px;
+
+  font-weight: 500;
+  border: 1px solid var(--border-bnt-default);
+
+  color: var(--text-bnt-default);
+
+  background: var(--bg-btn-default);
+  box-shadow: 3px 3px 0 var(--shadow-btn-default);
+
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow-btn-default);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid var(--border-btn-disabled);
+    color: var(--text-btn-disabled);
+    background: var(--bg-btn-disabled);
+  }
+
+  &:not(:disabled):hover {
+    border-color: var(--btn-hover);
+    color: var(--btn-hover);
+  }
+}
+
+.light-btn {
+  cursor: pointer;
+
+  padding: 4px 12px;
+  border-radius: 4px;
+
+  font-weight: 500;
+  border: 1px solid var(--border-btn-light);
+
+  color: var(--text-btn-light);
+
+  background: var(--bg-btn-light);
+  box-shadow: 3px 3px 0 var(--shadow-btn-light);
+
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow-btn-light);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid var(--border-btn-disabled);
+    color: var(--text-btn-disabled);
+    background: var(--bg-btn-disabled);
+  }
+
+  &:not(:disabled):hover {
+    border-color: var(--btn-hover);
+    color: var(--btn-hover);
+  }
+}
+
+.error-btn {
+  cursor: pointer;
+
+  padding: 4px 12px;
+  border-radius: 4px;
+
+  font-weight: 500;
+  border: 1px solid var(--border-btn-error);
+
+  color: var(--text-btn-error);
+
+  background: var(--bg-btn-error);
+  box-shadow: 3px 3px 0 var(--shadow-btn-error);
+
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow-btn-error);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid var(--border-btn-disabled);
+    color: var(--text-btn-disabled);
+    background: var(--bg-btn-disabled);
+  }
+
+  &:not(:disabled):hover {
+    border-color: var(--btn-hover);
+    color: var(--btn-hover);
+  }
+}
+
+.refresh-btn {
+  cursor: pointer;
+
+  padding: 4px 12px;
+  border-radius: 4px;
+
+  font-weight: 500;
+  border: 1px solid var(--border-btn-error);
+
+  color: var(--text-btn-error);
+
+  background: var(--bg-btn-error);
+  box-shadow: 3px 3px 0 var(--shadow-btn-error);
+
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow-btn-error);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid var(--border-btn-disabled);
+    color: var(--text-btn-disabled);
+    background: var(--bg-btn-disabled);
+  }
+
+  &:not(:disabled):hover {
+    border-color: var(--btn-hover);
+    color: var(--btn-hover);
+  }
+}
