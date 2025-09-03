@@ -1,4 +1,8 @@
-import Link from "next/link";
+import Link from 'next/link';
+
+export const MyComponent = () => {
+  return <div>Hello World</div>;
+};
 
 export default function Page() {
   return (
