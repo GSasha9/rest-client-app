@@ -8,6 +8,8 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useState } from 'react';
 import { SyntheticEvent } from 'react';
+import HeadersEditor from './headers-editor/headers-editor';
+import BodyEditor from './body-editor/body-editor';
 
 const RequestDetails = () => {
   const [value, setValue] = useState('headers');
@@ -26,9 +28,13 @@ const RequestDetails = () => {
             <Tab label="Body" value="body" />
           </TabList>
         </Box>
-        <TabPanel value="headers">Item One</TabPanel>
+        <TabPanel value="headers">
+          <HeadersEditor />
+        </TabPanel>
         <TabPanel value="code">Item Two</TabPanel>
-        <TabPanel value="body">Item Three</TabPanel>
+        <TabPanel value="body">
+          <BodyEditor />
+        </TabPanel>
       </TabContext>
     </div>
   );
