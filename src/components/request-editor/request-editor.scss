@@ -15,10 +15,22 @@
       height: 100%;
       border: none;
       width: 100%;
+      text-align: center;
+
+      &.MuiOutlinedInput-notchedOutline {
+        border: 'none';
+      }
+      &:hover .MuiOutlinedInput-notchedOutline {
+        border: 'none';
+      }
+      &.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border: 'none';
+      }
     }
   }
 
   .request-editor__item-input {
+    width: 100%;
     .input-field {
       height: 100%;
       width: 100%;
