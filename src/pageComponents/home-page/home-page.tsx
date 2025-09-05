@@ -1,6 +1,9 @@
 'use client';
 
-import RequestEditor from '@/components/request-editor.tsx/request-editor';
+import './home-page.scss';
+
+import RequestDetails from '@/components/request-details/request-details';
+import RequestEditor from '@/components/request-editor/request-editor';
 import { REQUEST_METHODS } from '@/shared/constants/request-methods';
 import { SelectChangeEvent } from '@mui/material';
 
@@ -15,7 +18,12 @@ const HomePage = () => {
     setMethod(e.target.value);
   };
 
-  return <RequestEditor selectMethod={method} handleSelect={handleSelect} />;
+  return (
+    <div className="editor">
+      <RequestEditor selectMethod={method} handleSelect={handleSelect} />
+      <RequestDetails />
+    </div>
+  );
 };
 
 export default HomePage;
