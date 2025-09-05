@@ -1,16 +1,17 @@
-import Image from 'next/image';
-import Page from '../pageComponents/page';
-import logo from '../assets/icon.svg';
+import HomePage from '@/pageComponents/home-page/home-page';
 
 export default function Home() {
   return (
-    <div>
-      <header>
-        <Image src={logo} alt={'icon'} width={70} height={70}></Image>
-      </header>
-      <main>
-        <Page />
-      </main>
-    </div>
+    <>
+      <div>
+        <header>
+          <span>Header</span>
+        </header>
+        <main>
+          <HomePage />
+        </main>
+        <footer>Footer</footer>
+      </div>
+    </>
   );
 }
