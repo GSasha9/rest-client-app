@@ -1,17 +1,5 @@
-import HomePage from '@/pageComponents/home-page/home-page';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <>
-      <div>
-        <header>
-          <span>Header</span>
-        </header>
-        <main>
-          <HomePage />
-        </main>
-        <footer>Footer</footer>
-      </div>
-    </>
-  );
+export default function RootPage() {
+  redirect('/en');
 }

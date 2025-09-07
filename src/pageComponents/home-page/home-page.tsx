@@ -1,6 +1,6 @@
 'use client';
 
-import RequestEditor from '@/components/request-editor.tsx/request-editor';
+import RequestEditor from '@/components/request-editor/request-editor';
 import { REQUEST_METHODS } from '@/shared/constants/request-methods';
 import { SelectChangeEvent } from '@mui/material';
 

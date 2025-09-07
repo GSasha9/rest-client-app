@@ -1,0 +1,21 @@
+@import './variables.module.scss';
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  font-weight: normal;
+  background-color: $background-default;
+}
+
+main {
+  min-height: calc(100dvh - $header-height - $footer-height);
+}
+
+ul,
+ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
