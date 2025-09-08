@@ -108,7 +108,7 @@ export const signOutUser = async (t: TFunction, extraMsg?: string) => {
     if (extraMsg) {
       warningNotifyMessage(extraMsg);
     } else {
-      warningNotifyMessage(t('auth.success.signout'));
+      warningNotifyMessage(t('auth.success.signup'));
     }
   } catch (err) {
     if (err instanceof Error) {
