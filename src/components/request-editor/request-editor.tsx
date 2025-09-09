@@ -1,7 +1,8 @@
-import { Button, Input, MenuItem, Select } from '@mui/material';
+import { Button, Input } from '@mui/material';
 import { REQUEST_METHODS } from '@/shared/constants/request-methods';
 import { SelectChangeEvent } from 'node_modules/@mui/material';
 import './request-editor.scss';
+import SelectMethod from '../select-method/select-method';
 
 interface RequestEditorProps {
   selectMethod: string;
@@ -12,29 +13,17 @@ const RequestEditor = ({ selectMethod, handleSelect }: RequestEditorProps) => {
   return (
     <div className="request-editor">
       <div className="request-editor__item-select">
-        <Select
-          className="select-field"
-          value={selectMethod}
-          onChange={(e: SelectChangeEvent) => handleSelect(e)}
-        >
-          {Object.values(REQUEST_METHODS).map((method, index) => (
-            <MenuItem
-              key={method}
-              value={method}
-              selected={index === 0 ? true : false}
-            >
-              {method}
-            </MenuItem>
-          ))}
-        </Select>
+        <SelectMethod
+          method={selectMethod}
+          handleSelect={handleSelect}
+          options={REQUEST_METHODS}
+        ></SelectMethod>
       </div>
       <div className="request-editor__item-input">
-        <Input className={'input-field'}></Input>
+        <Input className={'input-field'} placeholder="Enter URL"></Input>
       </div>
       <div className="request-editor__item-button">
-        <Button className={'item-button'} color="primary">
-          Send
-        </Button>
+        <Button className={'button'}>Send</Button>
       </div>
     </div>
   );
