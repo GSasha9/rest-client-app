@@ -25,9 +25,11 @@
   },
   "include": [
     "next-env.d.ts",
+    "env.d.ts",
+    "src",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
+    ".next/types/**/*.ts"
     "src/components/request-editor"
   ],
   "exclude": ["node_modules"]

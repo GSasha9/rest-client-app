@@ -1,7 +1,6 @@
 'use client';
 
 import './home-page.scss';
-
 import RequestDetails from '@/components/request-details/request-details';
 import RequestEditor from '@/components/request-editor/request-editor';
 import { REQUEST_METHODS } from '@/shared/constants/request-methods';
