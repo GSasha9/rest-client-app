@@ -1,56 +1,34 @@
 @use '../../styles/variables' as *;
 
-.request-editor {
-  display: flex;
-  width: 100%;
-  height: 40px;
-  justify-content: center;
-  border: 1px solid gray;
-  border-radius: $border-radius-input;
-  width: 60%;
-
-  .request-editor__item-select {
-    min-width: 120px;
-    .select-field {
-      height: 100%;
-      border: none;
-      width: 100%;
-      text-align: center;
-
-      &.MuiOutlinedInput-notchedOutline {
-        border: 'none';
-      }
-      &:hover .MuiOutlinedInput-notchedOutline {
-        border: 'none';
-      }
-      &.Mui-focused .MuiOutlinedInput-notchedOutline {
-        border: 'none';
-      }
-    }
-  }
-
-  .request-editor__item-input {
+.request-editor__item-select {
+  min-width: 120px;
+  .select-field {
+    height: 100%;
+    border: none;
     width: 100%;
-    .input-field {
-      height: 100%;
-      width: 100%;
-      padding-left: $spacing-xs;
-    }
+    text-align: center;
 
-    .mui-1cmet5c-MuiInputBase-root-MuiInput-root::after {
-      border-bottom: 1px solid #1976d2;
+    &.MuiOutlinedInput-notchedOutline {
+      border: 'none';
+    }
+    &:hover .MuiOutlinedInput-notchedOutline {
+      border: 'none';
+    }
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border: 'none';
     }
   }
+}
 
-  .request-editor__item-button {
-    .item-button {
-      height: 100%;
-      background-color: var(--bg-btn-default);
-      color: var(--text-bnt-default);
+.request-editor__item-input {
+  width: 100%;
+  .input-field {
+    height: 100%;
+    width: 100%;
+    padding-left: $spacing-xs;
+  }
 
-      &:hover {
-        background-color: var(--bg-btn-light);
-      }
-    }
+  .mui-1cmet5c-MuiInputBase-root-MuiInput-root::after {
+    border-bottom: 1px solid #1976d2;
   }
 }
