@@ -1,7 +1,6 @@
 'use client';
 
 import './home-page.scss';
-
 import RequestEditor from '@/components/request-editor/request-editor';
 import { REQUEST_METHODS } from '@/shared/constants/request-methods';
 import { SelectChangeEvent } from '@mui/material';
