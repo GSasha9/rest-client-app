@@ -39,8 +39,7 @@ const HomePage = () => {
 
   return (
     <div className="editor">
-      <div className="request-editor">
-        {' '}
+      <div className="request-editor container">
         <RequestEditor
           method={method}
           handleSelect={handleSelect}
@@ -49,11 +48,11 @@ const HomePage = () => {
           }
         />
         <div className="request-editor__item-button">
-          <Button className={'button'}>Send</Button>
+          <Button className="default-btn">Send</Button>
         </div>
       </div>
 
-      <div className="request-details-editor">
+      <div className="request-details-editor container">
         <HeadersEditor handleHeader={handleHeader} />
         <BodyEditor body={body} handleBody={debounceHandleBody} />
       </div>

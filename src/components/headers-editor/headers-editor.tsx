@@ -36,7 +36,7 @@ const HeadersEditor = ({ handleHeader }: HeaderEditorProps) => {
             />
           </div>
           <Button
-            className="button headers-editor__button"
+            className="default-btn headers-editor__button"
             onClick={handleButton}
           >
             Add header

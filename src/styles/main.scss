@@ -5,19 +5,3 @@
 .title-h4 {
   font-weight: $font-weight-normal;
 }
-
-.button {
-  height: 100%;
-  background-color: var(--bg-btn-default) !important;
-  color: var(--text-bnt-default) !important;
-  min-width: fit-content;
-
-  &:hover {
-    background-color: var(--bg-btn-light) !important;
-  }
-}
-
-.input {
-  height: 40px;
-  width: 100%;
-}

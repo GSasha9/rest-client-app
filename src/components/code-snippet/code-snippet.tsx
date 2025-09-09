@@ -5,6 +5,7 @@ import codeGenerator from '@/shared/utils/code-generator';
 import { Box, Tabs, Tab } from '@mui/material';
 import { useState } from 'react';
 import ReactCodeMirror from '@uiw/react-codemirror';
+import './code-snippet.scss';
 
 interface CodeSnippetProps {
   data: {
@@ -17,9 +18,11 @@ interface CodeSnippetProps {
 
 const CodeSnippet = ({ data }: CodeSnippetProps) => {
   const [result, setResult] = useState('');
-  const [value, setValue] = useState('Java Script (Fetch API)');
+  const [value, setValue] = useState('');
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
+    if (newValue === '') return;
+
     setValue(newValue);
 
     const convertTo = {
@@ -46,35 +49,33 @@ const CodeSnippet = ({ data }: CodeSnippetProps) => {
   return (
     <div className="code">
       <h4 className="title-h4">Code</h4>
-      <div className="code__content">
-        <div className="code-snippet">
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs
-              value={value}
-              aria-label="basic tabs example"
-              onChange={handleChange}
-            >
-              {Object.keys(LANGUAGES).map((el) => {
-                const key = el as keyof typeof LANGUAGES;
 
-                return (
-                  <Tab
-                    value={LANGUAGES[key].label}
-                    label={LANGUAGES[key].label}
-                    key={key}
-                  />
-                );
-              })}
-            </Tabs>
-          </Box>
-          <ReactCodeMirror
-            className="code-snippet-result"
-            value={result}
-            readOnly={true}
-            height="300px"
-            width="600px"
-          />
-        </div>
+      <div className="code-snippet">
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs
+            value={value}
+            aria-label="basic tabs example"
+            onChange={handleChange}
+          >
+            {Object.keys(LANGUAGES).map((el) => {
+              const key = el as keyof typeof LANGUAGES;
+
+              return (
+                <Tab
+                  value={LANGUAGES[key].label}
+                  label={LANGUAGES[key].label}
+                  key={key}
+                />
+              );
+            })}
+          </Tabs>
+        </Box>
+        <ReactCodeMirror
+          className="code-snippet-result"
+          value={result}
+          readOnly={true}
+          height="300px"
+        />
       </div>
     </div>
   );
