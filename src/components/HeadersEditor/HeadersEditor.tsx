@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Input } from '@mui/material';
-import './headers-editor.scss';
+import './HeadersEditor.scss';
 import { useState } from 'react';
 
 interface HeaderEditorProps {

@@ -5,7 +5,7 @@ import codeGenerator from '@/shared/utils/code-generator';
 import { Box, Tabs, Tab } from '@mui/material';
 import { useState } from 'react';
 import ReactCodeMirror from '@uiw/react-codemirror';
-import './code-snippet.scss';
+import './CodeSnippet.scss';
 
 interface CodeSnippetProps {
   data: {
