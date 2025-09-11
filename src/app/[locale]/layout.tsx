@@ -7,9 +7,6 @@ import theme from '@/theme/theme';
 import { ThemeProvider } from '@mui/system';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Container } from '@mui/material';
-import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
-import ComponentError from '@/components/ComponentError';
 import ToastifyNotification from '@/components/ToastifyNotification';
 
 type Props = {
@@ -37,16 +34,11 @@ export default async function LocaleLayout({ children, params }: Props) {
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
               <Header />
-              <Container
-                component="main"
-                maxWidth={false}
-                disableGutters
-                sx={{ display: 'flex', flexDirection: 'column' }}
-              >
-                <ErrorBoundary fallback={<ComponentError />}>
-                  {children}
-                </ErrorBoundary>
-              </Container>
+              <div className="wrapper-app">
+                {/* <ErrorBoundary fallback={<ComponentError />}> */}
+                {children}
+                {/* </ErrorBoundary> */}
+              </div>
               <Footer />
               <ToastifyNotification />
             </ThemeProvider>

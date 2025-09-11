@@ -7,7 +7,6 @@ import SignOutButton from '../SignOutButton';
 import SignUpButton from '../SignUpButton';
 import withUser from '../../utils/withUser';
 import theme from '../../theme/theme';
-import { JSX } from 'react';
 
 const STYLES = {
   wrapper: {
@@ -15,7 +14,7 @@ const STYLES = {
     gap: 3,
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
-      alignItem: 'center',
+      alignItems: 'center',
     },
   },
 };
@@ -24,11 +23,7 @@ export interface IProps {
   user?: User | null;
 }
 
-const Buttons: ({ user }: { user: IProps }) => JSX.Element = ({
-  user,
-}: {
-  user: IProps;
-}) => {
+const Buttons = ({ user }: IProps) => {
   if (user) return <SignOutButton />;
 
   return (
