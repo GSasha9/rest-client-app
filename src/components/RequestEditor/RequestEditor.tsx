@@ -20,7 +20,6 @@ const RequestEditor = ({
 }: RequestEditorProps) => {
   return (
     <>
-      {' '}
       <div className="request-editor__item-select">
         <SelectMethod
           method={method}
