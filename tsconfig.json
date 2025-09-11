@@ -30,7 +30,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/request-editor"
+    "src/components/RequestEditor"
   ],
   "exclude": ["node_modules"]
 }

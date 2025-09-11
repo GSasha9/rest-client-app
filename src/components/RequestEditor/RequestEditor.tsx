@@ -1,8 +1,8 @@
 import { Input } from '@mui/material';
 import { REQUEST_METHODS } from '@/shared/constants/request-methods';
 import { SelectChangeEvent } from 'node_modules/@mui/material';
-import './request-editor.scss';
-import SelectMethod from '../select-method/select-method';
+import './RequestEditor.scss';
+import SelectMethod from '../SelectMethod/SelectMethod';
 import { ChangeEvent } from 'react';
 
 interface RequestEditorProps {
@@ -20,7 +20,6 @@ const RequestEditor = ({
 }: RequestEditorProps) => {
   return (
     <>
-      {' '}
       <div className="request-editor__item-select">
         <SelectMethod
           method={method}

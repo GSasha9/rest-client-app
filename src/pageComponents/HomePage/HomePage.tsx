@@ -1,14 +1,14 @@
 'use client';
 
-import './home-page.scss';
-import RequestEditor from '@/components/request-editor/request-editor';
+import './HomePage.scss';
+import RequestEditor from '@/components/RequestEditor/RequestEditor';
 import { REQUEST_METHODS } from '@/shared/constants/request-methods';
 import { SelectChangeEvent } from '@mui/material';
-import CodeSnippet from '@/components/code-snippet/code-snippet';
+import CodeSnippet from '@/components/CodeSnippet/CodeSnippet';
 import { Button } from '@mui/material';
 import { ChangeEvent } from 'react';
-import HeadersEditor from '@/components/headers-editor/headers-editor';
-import BodyEditor from '@/components/body-editor/body-editor';
+import HeadersEditor from '@/components/HeadersEditor/HeadersEditor';
+import BodyEditor from '@/components/BodyEditor/BodyEditor';
 
 import { useState } from 'react';
 import useDebounce from '@/hooks/use-debounce';

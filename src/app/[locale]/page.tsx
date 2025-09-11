@@ -1,7 +1,7 @@
 import 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { LocaleType } from '@/i18n/config';
-import HomePage from '@/pageComponents/home-page/home-page';
+import HomePage from '@/pageComponents/HomePage/HomePage';
 
 interface IProps {
   params: { locale: LocaleType };

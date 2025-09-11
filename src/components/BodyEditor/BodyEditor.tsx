@@ -2,7 +2,7 @@
 
 import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
-import './body-editor.scss';
+import './BodyEditor.scss';
 import { useEffect } from 'react';
 
 interface BodyEditorProps {
