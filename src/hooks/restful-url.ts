@@ -3,14 +3,7 @@
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
-import { HeaderItem, Methods } from '../models/rest-client';
-
-interface RestData {
-  method: Methods;
-  headers: HeaderItem[];
-  url: string;
-  body?: string;
-}
+import { RestData } from '../models/rest-client';
 
 export const useRestfulUrl = () => {
   const router = useRouter();

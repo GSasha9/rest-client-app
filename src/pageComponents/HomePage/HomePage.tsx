@@ -8,9 +8,11 @@ import { useRestfulUrl } from '../../hooks/restful-url';
 import { HeaderItem, Methods } from '../../models/rest-client';
 import MethodEditor from '../../components/MethodEditor/MethodEditor';
 import UrlEditor from '../../components/UrlEditor/UrlEditor';
+import CodeSnippet from '../../components/CodeSnippet/CodeSnippet';
 
 const HomePage = () => {
-  const [{ headers, body, method, url }, setData] = useRestfulUrl();
+  const [data, setData] = useRestfulUrl();
+  const { headers, body, method, url } = data;
 
   const handleSetHeaders = (headers: HeaderItem[]) => setData({ headers });
   const handleSetBody = (body: string) => setData({ body });
@@ -26,9 +28,7 @@ const HomePage = () => {
       </div>
       <HeadersEditor headers={headers} setHeaders={handleSetHeaders} />
       <BodyEditor body={body} setBody={handleSetBody} />
-      {/* <CodeSnippet
-        data={{ url: url, method: method, header: header, body: body }}
-      /> */}
+      <CodeSnippet data={data} />
     </div>
   );
 };

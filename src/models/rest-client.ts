@@ -5,3 +5,9 @@ export interface HeaderItem {
 }
 
 export type Methods = 'GET' | 'PATCH' | 'POST' | 'PUT' | 'DELETE';
+export interface RestData {
+  method: Methods;
+  url: string;
+  headers: HeaderItem[];
+  body?: string;
+}
