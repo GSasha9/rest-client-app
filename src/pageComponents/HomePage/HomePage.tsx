@@ -19,11 +19,6 @@ const HomePage = () => {
   const [body, setBody] = useState('');
   const [header, setHeader] = useState<{ key: string; value: string }[]>([]);
 
-  console.log('method: ', method);
-  console.log('url: ', url);
-  console.log('body: ', body);
-  console.log('header: ', header);
-
   const handleSelect = (e: SelectChangeEvent) => {
     setMethod(e.target.value);
   };

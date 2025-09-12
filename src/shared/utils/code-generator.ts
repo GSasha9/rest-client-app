@@ -37,13 +37,10 @@ const codeGenerator = ({
       if (error) {
         console.error(error);
       } else {
-        console.log(snippet);
         result = snippet;
       }
     }
   );
-
-  console.log(codegen.getLanguageList());
 
   return result;
 };
