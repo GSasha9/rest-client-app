@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use '../../styles/variables.scss' as *;
 
 .wrapper {
   display: flex;
@@ -10,18 +10,8 @@
   gap: 4px;
 }
 
-.content {
+.input {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-.json-error {
-  color: red;
-}
-.textarea {
-  width: 200px;
   padding: 6px 8px;
   border: 1px solid var(--ava-border);
   border-radius: 4px;
@@ -35,4 +25,7 @@
     background-color: var(--bg-input-focus);
     outline: none;
   }
+}
+.select-field {
+  background-color: var(--bg-input);
 }

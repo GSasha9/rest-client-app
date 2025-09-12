@@ -22,10 +22,10 @@ export const useRestfulUrl = () => {
     [searchParams]
   );
 
-  const setSearchParams = (data: Partial<RestData>) => {
+  const setSearchParams = (newData: Partial<RestData>) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    params.set('data', btoa(JSON.stringify(data)));
+    params.set('data', btoa(JSON.stringify({ ...data, ...newData })));
     const query = params.toString();
 
     router.push(pathname + (query ? '?' + query : ''));

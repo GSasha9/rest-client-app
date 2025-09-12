@@ -2,7 +2,7 @@
 
 import s from './HeadersEditor.module.scss';
 import { HeaderItem } from '../../models/rest-client';
-import HeaderElement from './HeaderElement';
+import { HeaderElement } from './HeaderElement';
 
 interface HeadersEditorProps {
   headers: HeaderItem[];
@@ -17,7 +17,10 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
   return (
     <div className={s['wrapper']}>
       <div className={s['title-h4']}>
-        Headers <button onClick={handleAddHeader}>+</button>
+        Headers{' '}
+        <button className="default-btn" onClick={handleAddHeader}>
+          add header
+        </button>
       </div>
       <div className={s['content']}>
         {headers?.map((header, index) => (

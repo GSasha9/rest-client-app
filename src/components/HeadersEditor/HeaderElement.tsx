@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import s from './HeadersEditor.module.scss';
 import { HeaderItem } from '../../models/rest-client';
+import { useState } from 'react';
 
 interface HeaderElementProps {
   index: number;
@@ -9,7 +9,7 @@ interface HeaderElementProps {
   setData: (data: HeaderItem[]) => void;
 }
 
-const HeaderElement = ({
+export const HeaderElement = ({
   index,
   headers,
   data,
@@ -29,8 +29,10 @@ const HeaderElement = ({
 
   const handleChangeKey = (event: React.ChangeEvent<HTMLInputElement>) =>
     setKey(event.target.value);
+
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value);
+
   const handleToggleOn = (event: React.ChangeEvent<HTMLInputElement>) =>
     setOn(event.target.checked);
 
@@ -39,13 +41,14 @@ const HeaderElement = ({
   const handleRemove = () => setData(headers.filter((_, idx) => index !== idx));
 
   return (
-    <div>
+    <div className={s['header-item']}>
       <input
         className={s['input']}
         placeholder="key"
         value={key}
         onChange={handleChangeKey}
         onBlur={handleBlur}
+        name="key"
       />
       <input
         className={s['input']}
@@ -53,17 +56,23 @@ const HeaderElement = ({
         value={value}
         onChange={handleChangeValue}
         onBlur={handleBlur}
+        name="value"
       />
-      <input
-        type="checkbox"
-        name="header"
-        checked={on}
-        onBlur={handleBlur}
-        onChange={handleToggleOn}
-      />
-      <button onClick={handleRemove}> - </button>
+      <label style={{ whiteSpace: 'nowrap' }}>
+        apply header:
+        <input
+          type="checkbox"
+          name="header"
+          checked={on}
+          onBlur={handleBlur}
+          onChange={(event) => {
+            handleToggleOn(event);
+          }}
+        />
+      </label>
+      <button className="default-btn" onClick={handleRemove}>
+        delete
+      </button>
     </div>
   );
 };
-
-export default HeaderElement;

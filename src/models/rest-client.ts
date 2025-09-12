@@ -4,4 +4,4 @@ export interface HeaderItem {
   on: boolean;
 }
 
-export type Methods = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE';
+export type Methods = 'GET' | 'PATCH' | 'POST' | 'PUT' | 'DELETE';

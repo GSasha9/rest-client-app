@@ -8,7 +8,6 @@ interface BodyEditorProps {
 }
 const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
   const [error, setError] = useState(false);
-  // const bodyRef = useRef<HTMLTextAreaElement | null>(null); //не нужно
   const handlePrettify = () => {
     try {
       const parsed = JSON.parse(body || '""');
@@ -19,6 +18,10 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
       setError(true);
     }
   };
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement, Element>) => {
+    setError(false);
+    setBody(e.currentTarget.value);
+  };
 
   return (
     <div className={s['wrapper']}>
@@ -26,23 +29,19 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
       <div className={s['content']}>
         <textarea
           value={body}
-          // ref={bodyRef}
           name="body"
           rows={2}
           cols={33}
           className={s.textarea}
-          onChange={(e) => {
+          onChange={() => {
             setError(false);
-            setBody(e.currentTarget.value);
+          }}
+          onBlur={(e) => {
+            handleBlur(e);
           }}
           placeholder="enter in json format"
         />
-        <button
-          className="default-btn"
-          onClick={handlePrettify}
-          type="button"
-          // disabled={error || !localBody}
-        >
+        <button className="default-btn" onClick={handlePrettify} type="button">
           Prettify
         </button>
       </div>
