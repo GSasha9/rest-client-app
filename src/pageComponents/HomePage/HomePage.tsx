@@ -1,63 +1,37 @@
 'use client';
 
-import './HomePage.scss';
-import RequestEditor from '@/components/RequestEditor/RequestEditor';
-import { REQUEST_METHODS } from '@/shared/constants/request-methods';
-import { SelectChangeEvent } from '@mui/material';
-import CodeSnippet from '@/components/CodeSnippet/CodeSnippet';
 import { Button } from '@mui/material';
-import { ChangeEvent } from 'react';
 import HeadersEditor from '@/components/HeadersEditor/HeadersEditor';
-import BodyEditor from '@/components/BodyEditor/BodyEditor';
-
-import { useState } from 'react';
-import useDebounce from '@/hooks/use-debounce';
+import BodyEditor from '../../components/BodyEditor';
+import s from './HomePage.module.scss';
+import { useRestfulUrl } from '../../hooks/restful-url';
+import { HeaderItem /* Methods */ } from '../../models/rest-client';
 
 const HomePage = () => {
-  const [method, setMethod] = useState(REQUEST_METHODS.get);
-  const [url, setUrl] = useState('');
-  const [body, setBody] = useState('');
-  const [header, setHeader] = useState<{ key: string; value: string }[]>([]);
+  const [{ headers, body /* method, url */ }, setData] = useRestfulUrl();
 
-  console.log('method: ', method);
-  console.log('url: ', url);
-  console.log('body: ', body);
-  console.log('header: ', header);
-
-  const handleSelect = (e: SelectChangeEvent) => {
-    setMethod(e.target.value);
-  };
-
-  const debounceHandleUrl = useDebounce((arg) => setUrl(arg as string), 1000);
-
-  const debounceHandleBody = useDebounce((arg) => setBody(arg as string), 1000);
-
-  const handleHeader = (obj: { key: string; value: string }) => {
-    setHeader((prev) => [...prev, obj]);
-  };
+  const handleSetHeaders = (headers: HeaderItem[]) => setData({ headers });
+  const handleSetBody = (body: string) => setData({ body });
+  // const handleSetMethod = (method: Methods) => setData({ method });
+  // const handleSetUrl = (url: string) => setData({ url });
 
   return (
-    <div className="editor">
-      <div className="request-editor container">
+    <div className={s['wrapper']}>
+      {/* <div className={s['request']}>
         <RequestEditor
           method={method}
           handleSelect={handleSelect}
           handleUrl={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-            debounceHandleUrl(e.currentTarget.value)
+            setUrl(e.currentTarget.value)
           }
         />
-        <div className="request-editor__item-button">
-          <Button className="default-btn">Send</Button>
-        </div>
-      </div>
-
-      <div className="request-details-editor container">
-        <HeadersEditor handleHeader={handleHeader} />
-        <BodyEditor body={body} handleBody={debounceHandleBody} />
-      </div>
-      <CodeSnippet
+      </div> */}
+      <Button className="default-btn">Send</Button>
+      <HeadersEditor headers={headers} setHeaders={handleSetHeaders} />
+      <BodyEditor body={body} setBody={handleSetBody} />
+      {/* <CodeSnippet
         data={{ url: url, method: method, header: header, body: body }}
-      />
+      /> */}
     </div>
   );
 };

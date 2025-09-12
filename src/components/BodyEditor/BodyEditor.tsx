@@ -1,30 +1,19 @@
 'use client';
 
-import { Button, TextField } from '@mui/material';
+import s from './BodyEditor.module.scss';
 import { useState } from 'react';
-import './BodyEditor.scss';
-import { useEffect } from 'react';
-
 interface BodyEditorProps {
-  body: string;
-  handleBody: (value: string) => void;
+  body?: string;
+  setBody: (body: string) => void;
 }
-
-const BodyEditor = ({ body, handleBody }: BodyEditorProps) => {
+const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
   const [error, setError] = useState(false);
-  const [localBody, setLocalBody] = useState(body);
-
-  useEffect(() => {
-    setLocalBody(body);
-  }, [body]);
-
+  // const bodyRef = useRef<HTMLTextAreaElement | null>(null); //не нужно
   const handlePrettify = () => {
     try {
-      const parsed = JSON.parse(localBody);
+      const parsed = JSON.parse(body || '""');
 
-      setLocalBody(JSON.stringify(parsed, null, 4));
-
-      handleBody(JSON.stringify(parsed, null, 4));
+      setBody(JSON.stringify(parsed, null, 4));
       setError(false);
     } catch {
       setError(true);
@@ -32,34 +21,32 @@ const BodyEditor = ({ body, handleBody }: BodyEditorProps) => {
   };
 
   return (
-    <div className="body">
-      <h4 className="title-h4">Body</h4>
-
-      <div className="body-editor">
-        <TextField
-          className="text-field"
-          multiline={true}
-          rows={5}
-          value={localBody}
-          label="Request Body"
+    <div className={s['wrapper']}>
+      <div>Body:</div>
+      <div className={s['content']}>
+        <textarea
+          value={body}
+          // ref={bodyRef}
+          name="body"
+          rows={2}
+          cols={33}
+          className={s.textarea}
           onChange={(e) => {
             setError(false);
-            const value = e.currentTarget.value;
-
-            setLocalBody(value);
-            handleBody(value);
+            setBody(e.currentTarget.value);
           }}
-          error={error}
-          helperText={error ? 'Prettifying only for JSON' : ''}
+          placeholder="enter in json format"
         />
-        <Button
+        <button
           className="default-btn"
           onClick={handlePrettify}
-          disabled={error || !localBody}
+          type="button"
+          // disabled={error || !localBody}
         >
           Prettify
-        </Button>
+        </button>
       </div>
+      {error && <p className={s['json-error']}>Invalid JSON</p>}
     </div>
   );
 };

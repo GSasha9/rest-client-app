@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToastifyNotification from '@/components/ToastifyNotification';
 import { Metadata } from 'next';
+import '../../styles/main.scss';
 
 export const metadata: Metadata = {
   title: 'REACTQ32025',

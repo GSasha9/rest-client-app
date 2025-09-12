@@ -11,7 +11,7 @@
   --text-input: rgb(71 55 48);
   --border-input: rgb(204 125 46);
   --bg-input: rgb(255 242 229);
-  --bg-input-focus: rgb(255 254 252);
+  --bg-input-focus: rgb(252, 250, 246);
   --shadow-input: rgb(169 169 169);
   --border-bnt-default: #8a683e;
   --text-bnt-default: rgb(79 65 59);
@@ -72,6 +72,9 @@
   --bg-spinner-content: #d08e23;
   --text-pagination: rgb(218 202 191);
 }
+
+$header-height: 70px;
+$footer-height: 70px;
 
 $spacing-xxs: 2px;
 $spacing-xs: 4px;
