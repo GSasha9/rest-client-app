@@ -7,7 +7,7 @@ interface IProps {
   params: { locale: LocaleType };
 }
 
-export default function Page({ params: { locale } }: IProps) {
+export default async function Page({ params: { locale } }: IProps) {
   setRequestLocale(locale);
 
   return <HomePage />;
