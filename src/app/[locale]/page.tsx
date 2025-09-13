@@ -5,10 +5,12 @@ import HomePage from '@/pageComponents/HomePage/HomePage';
 // import HistoryAnalytics from '@/components/HistoryAnalytics/HistoryAnalytics';
 
 interface IProps {
-  params: { locale: LocaleType };
+  params: Promise<{ locale: LocaleType }>;
 }
 
-export default async function Page({ params: { locale } }: IProps) {
+export default async function Page({ params }: IProps) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
 
   return <HomePage />;
