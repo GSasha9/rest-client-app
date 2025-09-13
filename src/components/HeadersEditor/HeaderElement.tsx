@@ -1,31 +1,24 @@
+import { RestHeaders } from '../../models/rest-client';
 import s from './HeadersEditor.module.scss';
-import { HeaderItem } from '../../models/rest-client';
 import { useState } from 'react';
 
 interface HeaderElementProps {
-  index: number;
-  headers: HeaderItem[];
-  data: HeaderItem;
-  setData: (data: HeaderItem[]) => void;
+  headers: RestHeaders;
+  headerKey: string;
+  headerValue: string;
+  setData: (data: RestHeaders) => void;
 }
 
 export const HeaderElement = ({
-  index,
   headers,
-  data,
+  headerKey,
+  headerValue,
   setData,
 }: HeaderElementProps) => {
-  const [key, setKey] = useState(data.key);
-  const [value, setValue] = useState(data.value);
-  const [on, setOn] = useState(data.on);
+  const [key, setKey] = useState(headerKey);
+  const [value, setValue] = useState(headerValue);
 
-  const handleSetHeader = (header: HeaderItem, index: number) => {
-    const newHeaders = headers.map((item, idx) =>
-      index === idx ? header : item
-    );
-
-    setData(newHeaders);
-  };
+  const handleSetHeader = () => setData({ ...headers, [headerKey]: value });
 
   const handleChangeKey = (event: React.ChangeEvent<HTMLInputElement>) =>
     setKey(event.target.value);
@@ -33,12 +26,12 @@ export const HeaderElement = ({
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value);
 
-  const handleToggleOn = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setOn(event.target.checked);
+  const handleRemove = () => {
+    const newHeaders = { ...headers };
 
-  const handleBlur = () => handleSetHeader({ key, value, on }, index);
-
-  const handleRemove = () => setData(headers.filter((_, idx) => index !== idx));
+    delete newHeaders[key];
+    setData(newHeaders);
+  };
 
   return (
     <div className={s['header-item']}>
@@ -47,7 +40,7 @@ export const HeaderElement = ({
         placeholder="key"
         value={key}
         onChange={handleChangeKey}
-        onBlur={handleBlur}
+        onBlur={handleSetHeader}
         name="key"
       />
       <input
@@ -55,21 +48,9 @@ export const HeaderElement = ({
         placeholder="value"
         value={value}
         onChange={handleChangeValue}
-        onBlur={handleBlur}
+        onBlur={handleSetHeader}
         name="value"
       />
-      <label style={{ whiteSpace: 'nowrap' }}>
-        apply header:
-        <input
-          type="checkbox"
-          name="header"
-          checked={on}
-          onBlur={handleBlur}
-          onChange={(event) => {
-            handleToggleOn(event);
-          }}
-        />
-      </label>
       <button className="default-btn" onClick={handleRemove}>
         delete
       </button>

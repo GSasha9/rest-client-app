@@ -4,7 +4,7 @@ import s from './UrlEditor.module.scss';
 import { Input } from '@mui/material';
 
 interface UrlEditorProps {
-  input: string;
+  input: string | null;
   setInput: (url: string) => void;
 }
 

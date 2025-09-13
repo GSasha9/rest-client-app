@@ -1,18 +1,19 @@
 'use client';
 
 import s from './HeadersEditor.module.scss';
-import { HeaderItem } from '../../models/rest-client';
 import { HeaderElement } from './HeaderElement';
+import { RestHeaders } from '../../models/rest-client';
+import { useMemo } from 'react';
 
 interface HeadersEditorProps {
-  headers: HeaderItem[];
-  setHeaders: (headers: HeaderItem[]) => void;
+  headers: RestHeaders;
+  setHeaders: (headers: RestHeaders) => void;
 }
 
 const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
-  const handleAddHeader = () => {
-    setHeaders([...(headers || []), { key: '', value: '', on: true }]);
-  };
+  const handleAddHeader = () => setHeaders({ ...headers, '': '' });
+
+  const array = useMemo(() => Object.entries(headers), [headers]);
 
   return (
     <div className={s['wrapper']}>
@@ -23,13 +24,13 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
         </button>
       </div>
       <div className={s['content']}>
-        {headers?.map((header, index) => (
+        {array?.map(([key, value]) => (
           <HeaderElement
             headers={headers}
-            data={header}
-            index={index}
+            headerKey={key}
+            headerValue={value}
             setData={setHeaders}
-            key={`${index}${header.key}`}
+            key={key}
           />
         ))}
       </div>

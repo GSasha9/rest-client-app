@@ -1,12 +1,8 @@
 import sdk from 'postman-collection';
 import codegen from 'postman-code-generators';
-import { HeaderItem, Methods } from '../../models/rest-client';
+import { RestData } from '../../hooks/restful-url';
 
-export interface CodeGeneratorData {
-  url: string;
-  method: Methods;
-  headers: HeaderItem[];
-  body?: string;
+export interface CodeGeneratorData extends RestData {
   convertTo: { language: string; variant: string };
 }
 
@@ -17,10 +13,12 @@ const codeGenerator = ({
   body,
   convertTo,
 }: CodeGeneratorData) => {
+  if (!url || !method || body === null) return '';
+
   const request = new sdk.Request({
     url: url,
     method: method,
-    header: headers,
+    header: Object.entries(headers).map(([key, value]) => ({ key, value })),
     body: {
       mode: 'raw',
       raw: body,

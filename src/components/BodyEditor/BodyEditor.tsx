@@ -3,7 +3,7 @@
 import s from './BodyEditor.module.scss';
 import { useState } from 'react';
 interface BodyEditorProps {
-  body?: string;
+  body?: string | null;
   setBody: (body: string) => void;
 }
 const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
@@ -28,7 +28,7 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
       <div>Body:</div>
       <div className={s['content']}>
         <textarea
-          value={body}
+          value={body || ''}
           name="body"
           rows={2}
           cols={33}

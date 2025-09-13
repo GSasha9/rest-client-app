@@ -6,7 +6,7 @@ import { REQUEST_METHODS } from '../../shared/constants/request-methods';
 import { Methods } from '../../models/rest-client';
 
 interface MethodEditorProps {
-  method: Methods;
+  method: Methods | null;
   setMethod: (method: Methods) => void;
 }
 

@@ -6,7 +6,7 @@ import { Box, Tabs, Tab } from '@mui/material';
 import { useState } from 'react';
 import ReactCodeMirror from '@uiw/react-codemirror';
 import './CodeSnippet.scss';
-import { RestData } from '../../models/rest-client';
+import { RestData } from '../../hooks/restful-url';
 
 interface CodeSnippetProps {
   data: RestData;

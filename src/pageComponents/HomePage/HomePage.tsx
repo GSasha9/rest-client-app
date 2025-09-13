@@ -5,29 +5,28 @@ import HeadersEditor from '@/components/HeadersEditor/HeadersEditor';
 import BodyEditor from '../../components/BodyEditor';
 import s from './HomePage.module.scss';
 import { useRestfulUrl } from '../../hooks/restful-url';
-import { HeaderItem, Methods } from '../../models/rest-client';
 import MethodEditor from '../../components/MethodEditor/MethodEditor';
 import UrlEditor from '../../components/UrlEditor/UrlEditor';
 import CodeSnippet from '../../components/CodeSnippet/CodeSnippet';
+import { useCallback } from 'react';
 
 const HomePage = () => {
-  const [data, setData] = useRestfulUrl();
+  const { data, setHeaders, setMethod, setUrl, setBody } = useRestfulUrl();
   const { headers, body, method, url } = data;
 
-  const handleSetHeaders = (headers: HeaderItem[]) => setData({ headers });
-  const handleSetBody = (body: string) => setData({ body });
-  const handleSetMethod = (method: Methods) => setData({ method });
-  const handleSetUrl = (url: string) => setData({ url });
+  const isBody = useCallback(() => {
+    return method !== undefined && method !== 'GET' && method !== 'DELETE';
+  }, [method]);
 
   return (
     <div className={s['wrapper']}>
       <div className={s['request']}>
-        <MethodEditor method={method} setMethod={handleSetMethod} />
-        <UrlEditor input={url} setInput={handleSetUrl} />
+        <MethodEditor method={method} setMethod={setMethod} />
+        <UrlEditor input={url} setInput={setUrl} />
         <Button className="default-btn">Send</Button>
       </div>
-      <HeadersEditor headers={headers} setHeaders={handleSetHeaders} />
-      <BodyEditor body={body} setBody={handleSetBody} />
+      <HeadersEditor headers={headers} setHeaders={setHeaders} />
+      {isBody() && <BodyEditor body={body} setBody={setBody} />}
       <CodeSnippet data={data} />
     </div>
   );
