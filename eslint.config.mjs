@@ -19,6 +19,7 @@ const eslintConfig = [
   ),
   ...compat.config({
     rules: {
+      'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       'padding-line-between-statements': [

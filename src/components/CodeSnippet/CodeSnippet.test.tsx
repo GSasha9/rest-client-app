@@ -2,12 +2,14 @@ import { describe, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CodeSnippet from './CodeSnippet';
 import userEvent from '@testing-library/user-event';
+import { Methods } from '../../models/rest-client';
+import { RestData } from '../../hooks/restful-url';
 
 describe('CodeSnippet', () => {
-  const mockData = {
+  const mockData: RestData = {
     url: 'test.com',
     method: 'POST',
-    header: [{ key: 'headerKey', value: 'headerValue' }],
+    headers: { key: 'headerKey', value: 'headerValue' },
     body: 'testBody',
   };
   it('renders tabs correctly', () => {

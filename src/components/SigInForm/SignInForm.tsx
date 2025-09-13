@@ -141,7 +141,7 @@ const SignInForm = () => {
             </Button>
           </FormGroup>
           <Grid container>
-            <Grid item xs={12} sx={STYLES.link}>
+            <Grid sx={STYLES.link}>
               <Link
                 href={ROUTES.SIGN_UP}
                 variant="subtitle2"

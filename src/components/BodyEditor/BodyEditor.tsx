@@ -1,65 +1,51 @@
 'use client';
 
-import { Button, TextField } from '@mui/material';
+import s from './BodyEditor.module.scss';
 import { useState } from 'react';
-import './BodyEditor.scss';
-import { useEffect } from 'react';
-
 interface BodyEditorProps {
-  body: string;
-  handleBody: (value: string) => void;
+  body?: string | null;
+  setBody: (body: string) => void;
 }
-
-const BodyEditor = ({ body, handleBody }: BodyEditorProps) => {
+const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
   const [error, setError] = useState(false);
-  const [localBody, setLocalBody] = useState(body);
-
-  useEffect(() => {
-    setLocalBody(body);
-  }, [body]);
-
   const handlePrettify = () => {
     try {
-      const parsed = JSON.parse(localBody);
+      const parsed = JSON.parse(body || '""');
 
-      setLocalBody(JSON.stringify(parsed, null, 4));
-
-      handleBody(JSON.stringify(parsed, null, 4));
+      setBody(JSON.stringify(parsed, null, 4));
       setError(false);
     } catch {
       setError(true);
     }
   };
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement, Element>) => {
+    setError(false);
+    setBody(e.currentTarget.value);
+  };
 
   return (
-    <div className="body">
-      <h4 className="title-h4">Body</h4>
-
-      <div className="body-editor">
-        <TextField
-          className="text-field"
-          multiline={true}
-          rows={5}
-          value={localBody}
-          label="Request Body"
-          onChange={(e) => {
+    <div className={s['wrapper']}>
+      <div>Body:</div>
+      <div className={s['content']}>
+        <textarea
+          value={body || ''}
+          name="body"
+          rows={2}
+          cols={33}
+          className={s.textarea}
+          onChange={() => {
             setError(false);
-            const value = e.currentTarget.value;
-
-            setLocalBody(value);
-            handleBody(value);
           }}
-          error={error}
-          helperText={error ? 'Prettifying only for JSON' : ''}
+          onBlur={(e) => {
+            handleBlur(e);
+          }}
+          placeholder="enter in json format"
         />
-        <Button
-          className="default-btn"
-          onClick={handlePrettify}
-          disabled={error || !localBody}
-        >
+        <button className="default-btn" onClick={handlePrettify} type="button">
           Prettify
-        </Button>
+        </button>
       </div>
+      {error && <p className={s['json-error']}>Invalid JSON</p>}
     </div>
   );
 };
