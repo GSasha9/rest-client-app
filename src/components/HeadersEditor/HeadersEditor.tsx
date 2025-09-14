@@ -15,6 +15,9 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
 
   const array = useMemo(() => Object.entries(headers), [headers]);
 
+  const handleSetHeaders = (headers: [string, string][]) =>
+    setHeaders(Object.fromEntries(headers));
+
   return (
     <div className={s['wrapper']}>
       <div className={s['title-h4']}>
@@ -24,13 +27,14 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
         </button>
       </div>
       <div className={s['content']}>
-        {array?.map(([key, value]) => (
+        {array?.map(([key, value], index) => (
           <HeaderElement
-            headers={headers}
+            headers={array}
             headerKey={key}
             headerValue={value}
-            setData={setHeaders}
+            setData={handleSetHeaders}
             key={key}
+            index={index}
           />
         ))}
       </div>

@@ -43,9 +43,9 @@ export function useRestfulUrl() {
 
   const data: RestData = useMemo(() => {
     const segments = (pathname || '').split('/').filter(Boolean);
-    const method = isMethod(segments[0]) ? segments[0] : null;
-    const encodedUrl = segments[1] ?? null;
-    const encodedBody = segments[2] ?? null;
+    const method = isMethod(segments[2]) ? segments[2] : null;
+    const encodedUrl = segments[3] ?? null;
+    const encodedBody = segments[4] ?? null;
 
     let url: string | null = null;
 
@@ -63,7 +63,7 @@ export function useRestfulUrl() {
       try {
         const bodyStr = base64DecodeUnicode(encodedBody);
 
-        body = JSON.parse(bodyStr);
+        body = bodyStr;
       } catch {
         try {
           body = base64DecodeUnicode(encodedBody);
@@ -92,8 +92,10 @@ export function useRestfulUrl() {
       const merged: RestData = {
         method: newData.method ?? data.method ?? 'GET',
         url: newData.url ?? data.url ?? '',
-        headers: { ...(data.headers ?? {}), ...(newData.headers ?? {}) },
         body: newData.body ?? data.body ?? undefined,
+        headers: {
+          ...(newData.headers ? newData.headers : (data.headers ?? {})),
+        },
       };
 
       const encUrl = merged.url ? base64EncodeUnicode(merged.url) : '';
@@ -106,7 +108,7 @@ export function useRestfulUrl() {
             )
           : null;
 
-      let path = `/${merged.method}/${encUrl}`;
+      let path = `/client/${merged.method}/${encUrl}`;
 
       if (encBody) path += `/${encBody}`;
 

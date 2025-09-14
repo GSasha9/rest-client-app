@@ -1,16 +1,18 @@
 'use client';
 
 import s from './BodyEditor.module.scss';
-import { useState } from 'react';
+import React, { useState } from 'react';
 interface BodyEditorProps {
   body?: string | null;
   setBody: (body: string) => void;
 }
 const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
   const [error, setError] = useState(false);
+  const [localBody, setLocalBody] = useState(body);
+
   const handlePrettify = () => {
     try {
-      const parsed = JSON.parse(body || '""');
+      const parsed = JSON.parse(localBody || '""');
 
       setBody(JSON.stringify(parsed, null, 4));
       setError(false);
@@ -18,6 +20,12 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
       setError(true);
     }
   };
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setLocalBody(event.target.value);
+    setError(false);
+  };
+
   const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement, Element>) => {
     setError(false);
     setBody(e.currentTarget.value);
@@ -28,17 +36,13 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, setBody }) => {
       <div>Body:</div>
       <div className={s['content']}>
         <textarea
-          value={body || ''}
+          value={localBody || ''}
           name="body"
           rows={2}
           cols={33}
           className={s.textarea}
-          onChange={() => {
-            setError(false);
-          }}
-          onBlur={(e) => {
-            handleBlur(e);
-          }}
+          onChange={handleChange}
+          onBlur={handleBlur}
           placeholder="enter in json format"
         />
         <button className="default-btn" onClick={handlePrettify} type="button">

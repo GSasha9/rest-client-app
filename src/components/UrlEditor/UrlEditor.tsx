@@ -12,7 +12,7 @@ const UrlEditor = ({ input, setInput }: UrlEditorProps) => {
   return (
     <div className={s['wrapper']}>
       <Input
-        value={input || undefined}
+        value={input || ''}
         className={'input-field'}
         placeholder="Enter URL"
         onChange={(e) => setInput(e.target.value)}

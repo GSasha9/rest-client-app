@@ -5,7 +5,11 @@ import { auth } from '../../lib/firebase';
 import ROUTES from '../../shared/types/types';
 import Loader from '../Loader';
 
-const ProtectedAuthRoute = ({ children }: { children: React.ReactNode }) => {
+export const ProtectedAuthRoute = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const router = useRouter();
   const [user, loading] = useAuthState(auth);
 
