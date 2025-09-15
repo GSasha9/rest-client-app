@@ -1,41 +1,9 @@
 import dynamic from 'next/dynamic';
 import { decodeBase64 } from '@/utils/decode-base64';
 import { serverSearchParamsToObject } from '@/utils/server-search-params-to-object';
+import { performRequest } from '../../../../../../utils/perform-request';
 
-const RestClient = dynamic(() => import('@/pageComponents/RestClient'));
-
-async function performRequest(
-  method: string,
-  url: string,
-  body?: string,
-  headers?: Record<string, string>
-) {
-  try {
-    const response = await fetch(url, {
-      method,
-      headers: headers,
-      body: method !== 'GET' && method !== 'HEAD' ? body : undefined,
-    });
-
-    const text = await response.text();
-
-    return {
-      ok: response.ok,
-      status: response.status,
-      statusText: response.statusText,
-      headers: Object.fromEntries(response.headers.entries()),
-      body: text,
-    };
-  } catch (err: unknown) {
-    return {
-      ok: false,
-      status: 0,
-      statusText: 'Network Error',
-      headers: {},
-      body: err instanceof Error ? err.message : 'Unknown error',
-    };
-  }
-}
+export const RestClient = dynamic(() => import('@/pageComponents/RestClient'));
 
 interface PageProps {
   params: { method: string; rest: [string, string] };
@@ -49,19 +17,32 @@ export default async function RestClientPage({
   const { method, rest = [] } = params;
   const [url = '', body] = rest;
 
-  const url1 = decodeBase64(url);
-  const body1 = body ? decodeBase64(body) : undefined;
+  const decodeUrl = decodeBase64(url);
+  const decodeBody = body ? decodeBase64(body) : undefined;
   const headers = serverSearchParamsToObject(searchParams);
 
-  const result = await performRequest(
-    method.toUpperCase(),
-    url1,
-    body1,
-    headers
-  );
+  const result = await performRequest({
+    method: method.toUpperCase(),
+    url: decodeUrl,
+    body: decodeBody,
+    headers,
+  });
 
-  console.log({ method, url1, body1, headers });
+  // await requestToFirebase(userId, {
+  //   method: method.toUpperCase(),
+  //   url: url1,
+  //   headers,
+  //   body: body1,
+  //   timestamp: Date.now(),
+  //   duration: result.duration,
+  //   statusCode: result.status,
+  //   requestSize: result.requestSize,
+  //   responseSize: result.responseSize,
+  //   error: result.error,
+  // });
+
+  console.log({ method, decodeUrl, decodeBody, headers });
   console.log({ result });
 
-  return <RestClient />;
+  return <RestClient response={result} />;
 }
