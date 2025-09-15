@@ -1,6 +1,6 @@
 import sdk from 'postman-collection';
 import codegen from 'postman-code-generators';
-import { RestData } from '../../hooks/restful-url';
+import { RestData } from '../models/rest-client';
 
 export interface CodeGeneratorData extends RestData {
   convertTo: { language: string; variant: string };

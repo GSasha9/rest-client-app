@@ -2,39 +2,11 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
-import { Methods, RestHeaders } from '../models/rest-client';
-
-const isMethod = (value: string): value is Methods =>
-  value === 'GET' ||
-  value === 'PATCH' ||
-  value === 'POST' ||
-  value === 'PUT' ||
-  value === 'DELETE';
-
-export interface RestData {
-  method: Methods | null;
-  url: string | null;
-  headers: RestHeaders;
-  body?: string | null;
-}
-
-function base64EncodeUnicode(str: string) {
-  return btoa(
-    encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_match, p1) =>
-      String.fromCharCode(parseInt(p1, 16))
-    )
-  );
-}
-
-function base64DecodeUnicode(b64: string) {
-  const binary = atob(b64);
-  const percentEncoded = binary
-    .split('')
-    .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-    .join('');
-
-  return decodeURIComponent(percentEncoded);
-}
+import { Methods, RestData, RestHeaders } from '../models/rest-client';
+import { decodeBase64 } from '../utils/decode-base64';
+import { encodeBase64 } from '../utils/encode-base64';
+import { isMethod } from '../models/typeguard/rest-data';
+import { searchParamsToObject } from '../utils/search-param-to-object';
 
 export function useRestfulUrl() {
   const pathname = usePathname();
@@ -51,7 +23,7 @@ export function useRestfulUrl() {
 
     if (encodedUrl) {
       try {
-        url = base64DecodeUnicode(encodedUrl);
+        url = decodeBase64(encodedUrl);
       } catch {
         url = null;
       }
@@ -61,23 +33,19 @@ export function useRestfulUrl() {
 
     if (encodedBody) {
       try {
-        const bodyStr = base64DecodeUnicode(encodedBody);
+        const bodyStr = decodeBase64(encodedBody);
 
         body = bodyStr;
       } catch {
         try {
-          body = base64DecodeUnicode(encodedBody);
+          body = decodeBase64(encodedBody);
         } catch {
           body = null;
         }
       }
     }
 
-    const headers: Record<string, string> = {};
-
-    searchParams?.forEach((value, key) => {
-      headers[key] = value;
-    });
+    const headers = searchParamsToObject(searchParams);
 
     return {
       method,
@@ -98,10 +66,10 @@ export function useRestfulUrl() {
         },
       };
 
-      const encUrl = merged.url ? base64EncodeUnicode(merged.url) : '';
+      const encUrl = merged.url ? encodeBase64(merged.url) : '';
       const encBody =
         merged.body !== undefined && merged.body !== null
-          ? base64EncodeUnicode(
+          ? encodeBase64(
               typeof merged.body === 'string'
                 ? merged.body
                 : JSON.stringify(merged.body)
