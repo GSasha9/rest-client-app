@@ -8,10 +8,15 @@ interface ResponseSectionProps {
   response?: RequestResult;
 }
 const ResponseSection = ({ response }: ResponseSectionProps) => {
+  if (!response?.body) return <div className={s['wrapper']}>Response:</div>;
+
   return (
     <div className={s['wrapper']}>
+      <div>Status: {response?.status}</div>
       Response:
-      <pre className={s['response-text']}>{response?.body || ''}</pre>
+      <div className={s['table-wrapper']}>
+        <pre className={s['response-text']}>{response?.body || ''}</pre>
+      </div>
     </div>
   );
 };
