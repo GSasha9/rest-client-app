@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useState } from 'react';
 import { Methods, RestData, RestHeaders } from '../models/rest-client';
 import { decodeBase64 } from '../utils/decode-base64';
 import { encodeBase64 } from '../utils/encode-base64';
@@ -13,7 +13,7 @@ export function useRestfulUrl() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const data: RestData = useMemo(() => {
+  const [state, setState] = useState(() => {
     const segments = (pathname || '').split('/').filter(Boolean);
     const method = isMethod(segments[2]) ? segments[2] : null;
     const encodedUrl = segments[3] ?? null;
@@ -53,71 +53,65 @@ export function useRestfulUrl() {
       headers,
       body,
     };
-  }, [pathname, searchParams]);
+  });
 
-  const setData = useCallback(
-    (newData: Partial<RestData>, { replace = false } = {}) => {
-      const merged: RestData = {
-        method: newData.method ?? data.method ?? 'GET',
-        url: newData.url ?? data.url ?? '',
-        body: newData.body ?? data.body ?? undefined,
-        headers: {
-          ...(newData.headers ? newData.headers : (data.headers ?? {})),
-        },
-      };
+  const send = useCallback(() => {
+    const merged: RestData = {
+      method: state.method ?? 'GET',
+      url: state.url ?? '',
+      body: state.body ?? undefined,
+      headers: state.headers,
+    };
 
-      const encUrl = merged.url ? encodeBase64(merged.url) : '';
-      const encBody =
-        merged.body !== undefined && merged.body !== null
-          ? encodeBase64(
-              typeof merged.body === 'string'
-                ? merged.body
-                : JSON.stringify(merged.body)
-            )
-          : null;
+    const encUrl = merged.url ? encodeBase64(merged.url) : '';
+    const encBody =
+      merged.body !== undefined && merged.body !== null
+        ? encodeBase64(
+            typeof merged.body === 'string'
+              ? merged.body
+              : JSON.stringify(merged.body)
+          )
+        : null;
 
-      let path = `/client/${merged.method}/${encUrl}`;
+    let path = `/client/${merged.method}/${encUrl}`;
 
-      if (encBody) path += `/${encBody}`;
+    if (encBody) path += `/${encBody}`;
 
-      const query = new URLSearchParams();
+    const query = new URLSearchParams();
 
-      Object.entries(merged.headers ?? {}).forEach(([key, value]) => {
-        if (value === null) {
-          query.delete(key);
-        } else {
-          query.set(key, value);
-        }
-      });
+    Object.entries(merged.headers ?? {}).forEach(([key, value]) => {
+      if (value === null) {
+        query.delete(key);
+      } else {
+        query.set(key, value);
+      }
+    });
 
-      const qs = query.toString();
-      const href = path + (qs ? `?${qs}` : '');
+    const qs = query.toString();
+    const href = path + (qs ? `?${qs}` : '');
 
-      if (replace) router.replace(href);
-      else router.push(href);
-    },
-    [data, router]
-  );
+    router.replace(href);
+  }, [router, state.body, state.headers, state.method, state.url]);
 
   const setHeaders = useCallback(
-    (headers: RestHeaders) => setData({ headers }),
-    [setData]
+    (headers: RestHeaders) => setState((prev) => ({ ...prev, headers })),
+    []
   );
 
   const setMethod = useCallback(
-    (method: Methods) => setData({ method }),
-    [setData]
+    (method: Methods) => setState((prev) => ({ ...prev, method })),
+    []
   );
 
-  const setUrl = useCallback((url: string) => setData({ url }), [setData]);
+  const setUrl = useCallback(
+    (url: string) => setState((prev) => ({ ...prev, url })),
+    []
+  );
 
-  const setBody = useCallback((body: string) => setData({ body }), [setData]);
+  const setBody = useCallback(
+    (body: string) => setState((prev) => ({ ...prev, body })),
+    []
+  );
 
-  return {
-    data,
-    setHeaders,
-    setMethod,
-    setUrl,
-    setBody,
-  };
+  return { state, setHeaders, setMethod, setUrl, setBody, send };
 }

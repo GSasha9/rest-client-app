@@ -1,14 +1,19 @@
 'use client';
 
+import { RequestResult } from '../../utils/perform-request';
 import s from './ResponseSection.module.scss';
+import React from 'react';
 
-// interface ResponseSectionProps {
-//   body?: string | null;
-//   setBody: (body: string) => void;
-// }
-const ResponseSection /* : React.FC<ResponseSectionProps> */ =
-  (/* { body, setBody } */) => {
-    return <div className={s['wrapper']}>Response: </div>;
-  };
+interface ResponseSectionProps {
+  response?: RequestResult;
+}
+const ResponseSection = ({ response }: ResponseSectionProps) => {
+  return (
+    <div className={s['wrapper']}>
+      Response:
+      <pre className={s['response-text']}>{response?.body || ''}</pre>
+    </div>
+  );
+};
 
 export default ResponseSection;
