@@ -2,9 +2,15 @@
 
 import { fetchUserAnalytics } from '@/lib/analytics/actions';
 import { useState } from 'react';
-import HistoryAnalyticsServer from './HistoryAnalyticsServer';
+//import HistoryAnalyticsServer from './HistoryAnalyticsServer';
 import { FetchedAnalyticsData } from './types/fetched-analytics-data';
 import { AnalyticsData } from '@/lib/analytics';
+import dynamic from 'next/dynamic';
+
+const HistoryAnalyticsServer = dynamic(
+  () => import('./HistoryAnalyticsServer'),
+  { loading: () => <div>Loading analytics...</div> }
+);
 
 export const mockAnalyticsData: AnalyticsData = {
   userId: '1',
