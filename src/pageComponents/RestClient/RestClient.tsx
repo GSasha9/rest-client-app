@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@mui/material';
 import HeadersEditor from '@/components/HeadersEditor/HeadersEditor';
 import BodyEditor from '../../components/BodyEditor';
 import s from './RestClient.module.scss';
@@ -30,9 +29,9 @@ const RestClient = ({ response }: RestClientProps) => {
       <div className={s['request']}>
         <MethodEditor method={method} setMethod={setMethod} />
         <UrlEditor input={url} setInput={setUrl} />
-        <Button className="default-btn" onClick={send}>
+        <button className="default-btn" onClick={send}>
           Send
-        </Button>
+        </button>
       </div>
       <HeadersEditor headers={headers} setHeaders={setHeaders} />
       {isBody() && <BodyEditor body={body} url={url} setBody={setBody} />}

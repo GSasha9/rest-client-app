@@ -11,7 +11,7 @@ const ResponseSection = ({ response }: ResponseSectionProps) => {
   if (!response?.body) return <div className={s['wrapper']}>Response:</div>;
 
   return (
-    <div className={s['wrapper']}>
+    <div className="wrapper">
       <div>Status: {response?.status}</div>
       Response:
       <div className={s['table-wrapper']}>

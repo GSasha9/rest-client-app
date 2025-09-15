@@ -1,15 +1,5 @@
 @use '../../styles/variables' as *;
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg-card-shadow);
-  padding: 12px;
-  border: 1px solid var(--ava-border);
-  border-radius: 4px;
-  gap: 4px;
-}
-
 .inactive {
   position: relative;
   background-color: var(--bg-card-shadow-inactive);
@@ -25,7 +15,7 @@
 .content {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 8px;
 }
@@ -34,7 +24,7 @@
 }
 .textarea {
   cursor: text;
-  width: 200px;
+  width: 100%;
   padding: 6px 8px;
   border: 1px solid var(--ava-border);
   border-radius: 4px;

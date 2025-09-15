@@ -5,8 +5,8 @@ import { useCallback, useState } from 'react';
 import { Methods, RestData, RestHeaders } from '../models/rest-client';
 import { decodeBase64 } from '../utils/decode-base64';
 import { encodeBase64 } from '../utils/encode-base64';
-import { isMethod } from '../models/typeguard/rest-data';
 import { searchParamsToObject } from '../utils/search-param-to-object';
+import { isMethod } from '../models/typeguard/request';
 
 export function useRestfulUrl() {
   const pathname = usePathname();

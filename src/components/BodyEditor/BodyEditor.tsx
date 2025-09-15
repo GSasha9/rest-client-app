@@ -39,7 +39,7 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, url, setBody }) => {
   };
 
   return (
-    <div className={`${s.wrapper} ${url ? '' : s.inactive}`}>
+    <div className={`wrapper ${url ? '' : s.inactive}`}>
       <div>Body:</div>
       <div className={s['content']}>
         <textarea

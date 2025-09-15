@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import s from './UrlEditor.module.scss';
-import { Input } from '@mui/material';
 
 interface UrlEditorProps {
   input: string | null;
@@ -13,14 +12,14 @@ const UrlEditor = ({ input, setInput }: UrlEditorProps) => {
   const [localValue, setLocalValue] = useState(input);
 
   return (
-    <div className={s['wrapper']}>
-      <Input
+    <div className="wrapper">
+      <input
         value={localValue || ''}
-        className={'input-field'}
+        className={s.input}
         placeholder="Enter URL"
         onChange={(e) => setLocalValue(e.target.value)}
         onBlur={() => setInput(localValue || '')}
-      ></Input>
+      ></input>
     </div>
   );
 };
