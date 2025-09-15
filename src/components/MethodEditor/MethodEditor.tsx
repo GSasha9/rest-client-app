@@ -15,7 +15,7 @@ const MethodEditor = ({ method, setMethod }: MethodEditorProps) => {
     <div className={s['wrapper']}>
       <Select
         className={s['select-field']}
-        value={method || undefined}
+        value={method || ''}
         onChange={(event) => setMethod(event.target.value as Methods)}
         variant="standard"
       >

@@ -1,42 +1,50 @@
-import { RestHeaders } from '../../models/rest-client';
 import s from './HeadersEditor.module.scss';
 import { useState } from 'react';
 
 interface HeaderElementProps {
-  headers: RestHeaders;
+  headers: [string, string][];
   headerKey: string;
   headerValue: string;
-  setData: (data: RestHeaders) => void;
+  index: number;
+  setData: (data: [string, string][]) => void;
 }
 
 export const HeaderElement = ({
   headers,
   headerKey,
   headerValue,
+  index,
   setData,
 }: HeaderElementProps) => {
   const [key, setKey] = useState(headerKey);
   const [value, setValue] = useState(headerValue);
+  const [error, setError] = useState(false);
 
-  const handleSetHeader = () => setData({ ...headers, [headerKey]: value });
+  const handleSetHeader = () => {
+    if (error) return;
 
-  const handleChangeKey = (event: React.ChangeEvent<HTMLInputElement>) =>
+    const newHeaders: [string, string][] = headers.map((item, idx) =>
+      idx === index ? [key, value] : item
+    );
+
+    setData(newHeaders);
+  };
+
+  const handleChangeKey = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setError(headers.some(([key]) => key === event.target.value));
     setKey(event.target.value);
+  };
 
   const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value);
 
-  const handleRemove = () => {
-    const newHeaders = { ...headers };
-
-    delete newHeaders[key];
-    setData(newHeaders);
-  };
+  const handleRemove = () =>
+    setData(headers.filter((item, idx) => index !== idx));
 
   return (
     <div className={s['header-item']}>
       <input
-        className={s['input']}
+        className={`${s['input']} ${error ? s['error'] : ''}`}
         placeholder="key"
         value={key}
         onChange={handleChangeKey}

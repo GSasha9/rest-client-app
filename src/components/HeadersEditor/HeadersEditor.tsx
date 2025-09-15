@@ -13,7 +13,10 @@ interface HeadersEditorProps {
 const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
   const handleAddHeader = () => setHeaders({ ...headers, '': '' });
 
-  const array = useMemo(() => Object.entries(headers), [headers]);
+  const headersArray = useMemo(() => Object.entries(headers), [headers]);
+
+  const handleSetHeaders = (headers: [string, string][]) =>
+    setHeaders(Object.fromEntries(headers));
 
   return (
     <div className={s['wrapper']}>
@@ -24,13 +27,14 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
         </button>
       </div>
       <div className={s['content']}>
-        {array?.map(([key, value]) => (
+        {headersArray?.map(([key, value], index) => (
           <HeaderElement
-            headers={headers}
+            headers={headersArray}
             headerKey={key}
             headerValue={value}
-            setData={setHeaders}
+            setData={handleSetHeaders}
             key={key}
+            index={index}
           />
         ))}
       </div>

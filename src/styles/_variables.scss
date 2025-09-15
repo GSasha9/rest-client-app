@@ -1,6 +1,7 @@
 :root {
   --bg-card: rgb(243 237 191);
   --bg-card-shadow: rgb(189 183 137);
+  --bg-card-shadow-inactive: rgba(190, 186, 157, 0.6);
   --bg-flyout-shadow: rgb(219 167 98);
   --bg-body: rgb(238 198 134);
   --ava-border: rgb(144 142 121);
@@ -20,7 +21,7 @@
   --shadow-btn-default-active: #6f5331;
   --border-btn-disabled: rgb(151 150 149);
   --text-btn-disabled: rgb(121 121 121);
-  --bg-btn-disabled: rgb(151 150 149);
+  --bg-btn-disabled: rgba(174, 170, 163, 0.6);
   --btn-hover: rgb(31, 30, 30);
   --border-btn-light: #b3946d;
   --text-btn-light: rgb(105 97 91);
@@ -34,6 +35,8 @@
   --border-spinner: #bd7731;
   --bg-spinner-content: #d08e23;
   --text-pagination: rgb(105 97 91);
+  --textarea-inactive: rgb(219, 216, 212);
+  --textarea-text-inactive: rgb(167, 149, 125);
 }
 
 .dark {

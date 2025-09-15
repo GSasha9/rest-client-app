@@ -21,7 +21,9 @@
 
   background-color: var(--bg-input);
   box-shadow: inset 2px 2px 1px 1px var(--shadow-input);
-
+  &.error {
+    border-color: red;
+  }
   &:focus {
     background-color: var(--bg-input-focus);
     outline: none;
