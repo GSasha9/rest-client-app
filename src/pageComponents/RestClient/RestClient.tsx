@@ -27,7 +27,7 @@ const RestClient = () => {
         <Button className="default-btn">Send</Button>
       </div>
       <HeadersEditor headers={headers} setHeaders={setHeaders} />
-      {isBody() && <BodyEditor body={body} setBody={setBody} />}
+      {isBody() && <BodyEditor body={body} url={url} setBody={setBody} />}
       <ResponseSection />
       <CodeSnippet data={data} />
     </div>

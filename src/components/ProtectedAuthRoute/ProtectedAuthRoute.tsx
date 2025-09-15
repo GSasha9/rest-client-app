@@ -1,3 +1,4 @@
+'use client';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -18,14 +19,14 @@ export const ProtectedAuthRoute = ({
       return;
     }
 
-    if (user) router.push(ROUTES.MAIN_PAGE);
+    if (!user) router.push(ROUTES.MAIN_PAGE);
   }, [user, loading, router]);
 
   if (loading) {
     return <Loader />;
   }
 
-  return <div>{!user ? children : null}</div>;
+  return user ? children : null;
 };
 
 export default ProtectedAuthRoute;

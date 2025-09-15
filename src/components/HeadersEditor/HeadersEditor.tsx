@@ -13,7 +13,7 @@ interface HeadersEditorProps {
 const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
   const handleAddHeader = () => setHeaders({ ...headers, '': '' });
 
-  const array = useMemo(() => Object.entries(headers), [headers]);
+  const headersArray = useMemo(() => Object.entries(headers), [headers]);
 
   const handleSetHeaders = (headers: [string, string][]) =>
     setHeaders(Object.fromEntries(headers));
@@ -27,9 +27,9 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
         </button>
       </div>
       <div className={s['content']}>
-        {array?.map(([key, value], index) => (
+        {headersArray?.map(([key, value], index) => (
           <HeaderElement
-            headers={array}
+            headers={headersArray}
             headerKey={key}
             headerValue={value}
             setData={handleSetHeaders}

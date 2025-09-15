@@ -36,6 +36,7 @@ ol {
 }
 
 .default-btn {
+  cursor: pointer;
   padding: 4px 8px;
   border: 1px solid var(--border-btn-light);
   color: var(--text-color-accent);

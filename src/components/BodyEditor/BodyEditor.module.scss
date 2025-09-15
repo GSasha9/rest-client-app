@@ -10,6 +10,18 @@
   gap: 4px;
 }
 
+.inactive {
+  position: relative;
+  background-color: var(--bg-card-shadow-inactive);
+}
+.inactive::before {
+  content: 'Please fill in the URL field';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--textarea-text-inactive);
+}
+
 .content {
   width: 100%;
   display: flex;
@@ -21,6 +33,7 @@
   color: red;
 }
 .textarea {
+  cursor: text;
   width: 200px;
   padding: 6px 8px;
   border: 1px solid var(--ava-border);
@@ -34,5 +47,10 @@
   &:focus {
     background-color: var(--bg-input-focus);
     outline: none;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--textarea-text-inactive);
+    background-color: transparent;
   }
 }
