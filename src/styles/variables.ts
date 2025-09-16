@@ -11,12 +11,12 @@ export const themeVars = {
   borderFooter: '#eebbc3',
   textFooter: '#fffffe',
 
-  primaryMain: '#ff6a3d',
-  primaryLight: '#ffb86b',
-  primaryDark: '#d7263d',
+  primaryMain: '#3f72af',
+  primaryLight: '#d7263d',
+  primaryDark: '#ffb86b',
   primaryContrastText: '#232946',
 
-  secondaryMain: '#3f72af',
+  secondaryMain: '#ff6a3d',
   secondaryLight: '#dbe2ef',
   secondaryDark: '#112d4e',
   secondaryContrastText: '#fffffe',
