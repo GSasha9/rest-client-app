@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@mui/material';
 import HeadersEditor from '@/components/HeadersEditor/HeadersEditor';
 import BodyEditor from '../../components/BodyEditor';
 import s from './RestClient.module.scss';
@@ -10,10 +9,16 @@ import UrlEditor from '../../components/UrlEditor/UrlEditor';
 import CodeSnippet from '../../components/CodeSnippet/CodeSnippet';
 import { useCallback } from 'react';
 import ResponseSection from '../../components/ResponseSection';
+import { RequestResult } from '../../utils/perform-request';
 
-const RestClient = () => {
-  const { data, setHeaders, setMethod, setUrl, setBody } = useRestfulUrl();
-  const { headers, body, method, url } = data;
+interface RestClientProps {
+  response?: RequestResult;
+}
+
+const RestClient = ({ response }: RestClientProps) => {
+  const { state, setHeaders, setMethod, setUrl, setBody, send } =
+    useRestfulUrl();
+  const { headers, body, method, url } = state;
 
   const isBody = useCallback(() => {
     return method !== undefined && method !== 'GET' && method !== 'DELETE';
@@ -24,12 +29,14 @@ const RestClient = () => {
       <div className={s['request']}>
         <MethodEditor method={method} setMethod={setMethod} />
         <UrlEditor input={url} setInput={setUrl} />
-        <Button className="default-btn">Send</Button>
+        <button className="default-btn" onClick={send}>
+          Send
+        </button>
       </div>
       <HeadersEditor headers={headers} setHeaders={setHeaders} />
       {isBody() && <BodyEditor body={body} url={url} setBody={setBody} />}
-      <ResponseSection />
-      <CodeSnippet data={data} />
+      <ResponseSection response={response} />
+      <CodeSnippet data={state} />
     </div>
   );
 };
