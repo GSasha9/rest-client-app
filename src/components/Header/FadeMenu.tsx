@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import Buttons from './Buttons';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -73,6 +74,9 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
+        <MenuItem onClick={handleClose}>
+          <LanguageSwitcher />
+        </MenuItem>
         <MenuItem onClick={handleClose}></MenuItem>
         <MenuItem onClick={handleClose}>
           <Buttons />

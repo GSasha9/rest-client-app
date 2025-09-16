@@ -64,7 +64,8 @@
   },
   "dashboard": {
     "restful": "RESTful Client",
-    "history": "Query history"
+    "history": "Query history",
+    "variables": "Variables"
   },
   "firestore": {
     "error": {

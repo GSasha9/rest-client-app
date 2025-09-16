@@ -65,7 +65,8 @@
   },
   "dashboard": {
     "restful": "RESTful клиент",
-    "history": "История запросов"
+    "history": "История запросов",
+    "variables": "Переменные"
   },
   "firestore": {
     "error": {
