@@ -65,6 +65,8 @@ export const signUpUser = async (
       email,
     });
     successNotifyMessage(t('auth.success.signup'));
+
+    return { success: true };
   } catch (err) {
     if (
       err instanceof FirebaseError &&
@@ -87,6 +89,8 @@ export const signInUser = async (
   try {
     await signInWithEmailAndPassword(auth, email, password);
     successNotifyMessage(t('auth.success.signin'));
+
+    return { success: true };
   } catch (err) {
     if (
       err instanceof FirebaseError &&

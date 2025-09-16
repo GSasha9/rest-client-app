@@ -29,9 +29,11 @@ import {
 import { STYLES } from './styles.signInForm';
 import SignInWithGoogle from '../SignInWithGoogle';
 import { errorNotifyMessage } from '@/utils/notifyMessage';
+import { useRouter } from 'next/navigation';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = React.useState(false);
+  const router = useRouter();
   const onClickShowPassword = () => setShowPassword((show) => !show);
   const onMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -50,7 +52,10 @@ const SignInForm = () => {
 
   const onSubmit: SubmitHandler<ISignInFormData> = async (data) => {
     try {
-      await signInUser(data.email, data.password, t);
+      const authRequest = await signInUser(data.email, data.password, t);
+
+      if (authRequest?.success) router.push(ROUTES.MAIN_PAGE);
+
       reset();
     } catch (err) {
       if (err instanceof Error) {

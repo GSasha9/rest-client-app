@@ -30,12 +30,14 @@ import {
 import { STYLES } from '@/components/SigInForm/styles.signInForm';
 import { errorNotifyMessage } from '@/utils/notifyMessage';
 import PasswordStrength from '@/components/PasswordStrength';
+import { useRouter } from 'next/navigation';
 
 const SignUpForm = () => {
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
   const passwordInputRef = useRef<HTMLInputElement | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (passwordInputRef.current) {
@@ -68,7 +70,15 @@ const SignUpForm = () => {
 
   const onSubmit: SubmitHandler<ISignUpFormData> = async (data) => {
     try {
-      await signUpUser(data.name, data.email, data.password, t);
+      const authResalt = await signUpUser(
+        data.name,
+        data.email,
+        data.password,
+        t
+      );
+
+      if (authResalt?.success) router.push(ROUTES.MAIN_PAGE);
+
       reset();
     } catch (err) {
       if (err instanceof Error) {
