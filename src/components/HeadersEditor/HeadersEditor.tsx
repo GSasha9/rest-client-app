@@ -19,7 +19,7 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
     setHeaders(Object.fromEntries(headers));
 
   return (
-    <div className={s['wrapper']}>
+    <div className="wrapper">
       <div className={s['title-h4']}>
         Headers{' '}
         <button className="default-btn" onClick={handleAddHeader}>

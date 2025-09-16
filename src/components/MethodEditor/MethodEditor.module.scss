@@ -3,19 +3,19 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-card-shadow);
   padding: 12px;
-  border: 1px solid var(--ava-border);
+  background-color: var(--bg-card);
+  box-shadow: 3px 3px 4px var(--bg-card-shadow);
   border-radius: 4px;
   gap: 4px;
 }
 
 .input {
   width: 100%;
-  padding: 6px 8px;
+  padding: 12px 12px;
   border: 1px solid var(--ava-border);
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-color-accent);
 
   background-color: var(--bg-input);
