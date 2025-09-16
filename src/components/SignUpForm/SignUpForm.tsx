@@ -27,7 +27,7 @@ import {
   ISignUpFormData,
   validateSignUpSchema,
 } from '@/validations/signUpValidation.shema';
-import { STYLES } from '@/components/SigInForm/styles.signInForm';
+import { STYLES } from './styles.signUpForm';
 import { errorNotifyMessage } from '@/utils/notifyMessage';
 import PasswordStrength from '@/components/PasswordStrength';
 import { useRouter } from 'next/navigation';
