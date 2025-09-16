@@ -4,11 +4,10 @@ import React from 'react';
 import SignInForm from '@/components/SigInForm';
 
 const SignInPage = () => {
-  return (
-    // <ProtectedAuthRoute>
-    <SignInForm />
-    // </ProtectedAuthRoute>
-  );
+
+  return <SignInForm />;
+
+
 };
 
 export default SignInPage;

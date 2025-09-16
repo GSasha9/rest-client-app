@@ -4,11 +4,11 @@ import React from 'react';
 import SignUpForm from '@/components/SignUpForm';
 
 const SignUpPage = () => {
-  return (
-    // <ProtectedAuthRoute>
+
+  return <SignUpForm />;
+
     <SignUpForm />
-    // </ProtectedAuthRoute>
-  );
+
 };
 
 export default SignUpPage;
