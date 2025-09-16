@@ -7,7 +7,6 @@ import { useRestfulUrl } from '../../hooks/restful-url';
 import MethodEditor from '../../components/MethodEditor/MethodEditor';
 import UrlEditor from '../../components/UrlEditor/UrlEditor';
 import CodeSnippet from '../../components/CodeSnippet/CodeSnippet';
-import { useCallback, useEffect } from 'react';
 import ResponseSection from '../../components/ResponseSection';
 import { RequestResult } from '../../utils/perform-request';
 import { AnalyticsData } from '@/lib/analytics';
@@ -16,12 +15,16 @@ import { useSearchParams } from 'next/navigation';
 import { db } from '@/lib/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Methods, RestHeaders } from '@/models/rest-client';
+import { useCallback, useEffect, useState } from 'react';
+import { ErrorState } from '../../utils/explain-error';
 
 interface RestClientProps {
   response?: RequestResult;
+  errorDetails: ErrorState;
 }
 
-const RestClient = ({ response }: RestClientProps) => {
+const RestClient = ({ response, errorDetails }: RestClientProps) => {
+  const [emptyHeader, setEmptyHeader] = useState(false);
   const { state, setHeaders, setMethod, setUrl, setBody, send } =
     useRestfulUrl();
   const { headers, body, method, url } = state;
@@ -98,18 +101,36 @@ const RestClient = ({ response }: RestClientProps) => {
     sendAnalytics();
   }, [body, headers, response, method, url]);
 
+  const isEmptyHeader = () => {
+    const emptyValue = Object.entries(headers).some(
+      ([key, value]) => key === '' || value === ''
+    );
+
+    setEmptyHeader(emptyValue);
+  };
+
   return (
     <div className={s['wrapper']}>
       <div className={s['request']}>
         <MethodEditor method={method} setMethod={setMethod} />
         <UrlEditor input={url} setInput={setUrl} />
-        <button className="default-btn" onClick={send}>
+        <button
+          className="default-btn"
+          onClick={() => {
+            send();
+            isEmptyHeader();
+          }}
+        >
           Send
         </button>
       </div>
-      <HeadersEditor headers={headers} setHeaders={setHeaders} />
+      <HeadersEditor
+        headers={headers}
+        setHeaders={setHeaders}
+        emptyHeader={emptyHeader}
+      />
       {isBody() && <BodyEditor body={body} url={url} setBody={setBody} />}
-      <ResponseSection response={response} />
+      <ResponseSection response={response} errorDetails={errorDetails} />
       <CodeSnippet data={state} />
     </div>
   );

@@ -8,9 +8,14 @@ import { useMemo } from 'react';
 interface HeadersEditorProps {
   headers: RestHeaders;
   setHeaders: (headers: RestHeaders) => void;
+  emptyHeader: boolean;
 }
 
-const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
+const HeadersEditor = ({
+  headers,
+  setHeaders,
+  emptyHeader,
+}: HeadersEditorProps) => {
   const handleAddHeader = () => setHeaders({ ...headers, '': '' });
 
   const headersArray = useMemo(() => Object.entries(headers), [headers]);
@@ -19,8 +24,10 @@ const HeadersEditor = ({ headers, setHeaders }: HeadersEditorProps) => {
     setHeaders(Object.fromEntries(headers));
 
   return (
-    <div className="wrapper">
-      <div className={s['title-h4']}>
+    <div className={s.wrapper}>
+      <div
+        className={`${s['title-h4']} ${emptyHeader ? s['empty-header'] : ''}`}
+      >
         Headers{' '}
         <button className="default-btn" onClick={handleAddHeader}>
           add header

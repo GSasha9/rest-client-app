@@ -3,13 +3,14 @@
 .inactive {
   position: relative;
   background-color: var(--bg-card-shadow-inactive);
-}
-.inactive::before {
-  content: 'Please fill in the URL field';
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  color: var(--textarea-text-inactive);
+
+  &::before {
+    content: 'Please fill in the URL field';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: var(--textarea-text-inactive);
+  }
 }
 
 .content {
