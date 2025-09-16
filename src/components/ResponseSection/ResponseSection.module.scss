@@ -1,0 +1,59 @@
+@use '../../styles/variables' as *;
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-card-shadow);
+  padding: 12px;
+  border: 1px solid var(--ava-border);
+  border-radius: 4px;
+  gap: 4px;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.json-error {
+  color: red;
+}
+.textarea {
+  width: 200px;
+  padding: 6px 8px;
+  border: 1px solid var(--ava-border);
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--text-color-accent);
+
+  background-color: var(--bg-input);
+  box-shadow: inset 2px 2px 1px 1px var(--shadow-input);
+
+  &:focus {
+    background-color: var(--bg-input-focus);
+    outline: none;
+  }
+}
+.response-text {
+  color: var(--text-flyout-color);
+  font-size: 16px;
+}
+.table-wrapper {
+  overflow: auto;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  border-radius: 2px;
+
+  background-color: rgb(187, 194, 171);
+  box-shadow:
+    inset 0 3px 6px rgb(0 0 0 / 25%),
+    inset 0 -2px 4px rgb(255 255 255 / 15%);
+}

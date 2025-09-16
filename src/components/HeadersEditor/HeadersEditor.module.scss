@@ -1,0 +1,32 @@
+@use '../../styles/variables.scss' as *;
+
+.input {
+  font-size: 18px;
+  width: 100%;
+  padding: 6px 6px;
+  border: 1px solid var(--ava-border);
+  border-radius: 4px;
+  color: var(--text-color-accent);
+
+  background-color: var(--bg-input);
+  box-shadow: inset 2px 2px 1px 1px var(--shadow-input);
+  &.error {
+    border-color: red;
+  }
+  &:focus {
+    background-color: var(--bg-input-focus);
+    outline: none;
+  }
+}
+.content {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+.header-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

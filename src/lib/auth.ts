@@ -6,7 +6,7 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import {
   errorNotifyMessage,
   successNotifyMessage,
@@ -14,6 +14,7 @@ import {
 } from '@/utils/notifyMessage';
 import { TFunction } from '@/validations/signInValidation.schema';
 import { auth, db } from './firebase';
+import { setDoc, doc } from 'firebase/firestore';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -30,7 +31,14 @@ export const signInWithGoogle = async (t: TFunction) => {
     const docs = await getDocs(q);
 
     if (docs.docs.length === 0) {
-      await addDoc(collection(db, 'users'), {
+      // await addDoc(collection(db, 'users'), {
+      //   uid: user.uid,
+      //   name: user.displayName,
+      //   authProvider: 'google',
+      //   email: user.email,
+      // });
+
+      await setDoc(doc(db, 'users', user.uid), {
         uid: user.uid,
         name: user.displayName,
         authProvider: 'google',
@@ -58,13 +66,21 @@ export const signUpUser = async (
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = res;
 
-    await addDoc(collection(db, 'users'), {
+    // await addDoc(collection(db, 'users'), {
+    //   uid: user.uid,
+    //   name,
+    //   authProvider: 'local',
+    //   email,
+    // });
+
+    await setDoc(doc(db, 'users', user.uid), {
       uid: user.uid,
       name,
-      authProvider: 'local',
       email,
     });
     successNotifyMessage(t('auth.success.signup'));
+
+    return { success: true };
   } catch (err) {
     if (
       err instanceof FirebaseError &&
@@ -87,6 +103,8 @@ export const signInUser = async (
   try {
     await signInWithEmailAndPassword(auth, email, password);
     successNotifyMessage(t('auth.success.signin'));
+
+    return { success: true };
   } catch (err) {
     if (
       err instanceof FirebaseError &&

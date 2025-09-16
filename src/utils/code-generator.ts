@@ -1,25 +1,24 @@
 import sdk from 'postman-collection';
 import codegen from 'postman-code-generators';
+import { RestData } from '../models/rest-client';
 
-export interface codeGeneratorData {
-  url: string;
-  method: string;
-  header: { key: string; value: string }[];
-  body: string;
+export interface CodeGeneratorData extends RestData {
   convertTo: { language: string; variant: string };
 }
 
 const codeGenerator = ({
   url,
   method,
-  header,
+  headers,
   body,
   convertTo,
-}: codeGeneratorData) => {
+}: CodeGeneratorData) => {
+  if (!url || !method || body === null) return '';
+
   const request = new sdk.Request({
     url: url,
     method: method,
-    header: header,
+    header: Object.entries(headers).map(([key, value]) => ({ key, value })),
     body: {
       mode: 'raw',
       raw: body,

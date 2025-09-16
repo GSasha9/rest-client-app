@@ -9,6 +9,7 @@ import ROUTES from '../../shared/types/types';
 import theme, { ADDITION_COLOR } from '../../theme/theme';
 import Buttons from './Buttons';
 import FadeMenu from './FadeMenu';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 const getStyles = (fixed: boolean) => ({
   wrapper: {
@@ -74,7 +75,7 @@ const Header: React.FC = () => {
       maxWidth={false}
     >
       <Box sx={styles.header}>
-        <Stack direction="row" alignItems="center" gap={2}>
+        <Stack direction="row" alignItems="center" gap={4}>
           <Link href={ROUTES.MAIN_PAGE}>
             <Box sx={styles.logoImg}>
               <Image
@@ -96,6 +97,7 @@ const Header: React.FC = () => {
             </>
           ) : (
             <>
+              <LanguageSwitcher />
               <Buttons />
             </>
           )}

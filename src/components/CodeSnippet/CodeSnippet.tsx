@@ -1,19 +1,15 @@
 'use client';
 
 import { LANGUAGES } from '@/shared/constants/languages';
-import codeGenerator from '@/shared/utils/code-generator';
+import codeGenerator from '@/utils/code-generator';
 import { Box, Tabs, Tab } from '@mui/material';
 import { useState } from 'react';
 import ReactCodeMirror from '@uiw/react-codemirror';
 import './CodeSnippet.scss';
+import { RestData } from '../../models/rest-client';
 
 interface CodeSnippetProps {
-  data: {
-    url: string;
-    method: string;
-    header: { key: string; value: string }[];
-    body: string;
-  };
+  data: RestData;
 }
 
 const CodeSnippet = ({ data }: CodeSnippetProps) => {
