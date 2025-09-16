@@ -8,4 +8,6 @@ export interface AnalyticsData {
   responseSize: number;
   errorDetails: string;
   endpointUrl: string;
+  headers?: Record<string, string>;
+  body?: string | null;
 }
