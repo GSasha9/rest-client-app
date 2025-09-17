@@ -11,27 +11,61 @@ import { useCallback, useEffect } from 'react';
 import ResponseSection from '../../components/ResponseSection';
 import { RequestResult } from '../../utils/perform-request';
 import { AnalyticsData } from '@/lib/analytics';
-import { saveAnalyticsData } from '@/lib/analytics/save-analytics-data';
 import { auth } from '@/lib/firebase';
+import { useSearchParams } from 'next/navigation';
+import { db } from '@/lib/firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { Methods, RestHeaders } from '@/models/rest-client';
 
 interface RestClientProps {
   response?: RequestResult;
-  requestMethod: string;
-  requestUrl: string;
 }
 
-const RestClient = ({
-  response,
-  requestMethod,
-  requestUrl,
-}: RestClientProps) => {
+const RestClient = ({ response }: RestClientProps) => {
   const { state, setHeaders, setMethod, setUrl, setBody, send } =
     useRestfulUrl();
   const { headers, body, method, url } = state;
+  const searchParams = useSearchParams();
+
+  const dataId = searchParams.get('dataId');
 
   const isBody = useCallback(() => {
     return method !== undefined && method !== 'GET' && method !== 'DELETE';
   }, [method]);
+
+  useEffect(() => {
+    if (!dataId) return;
+
+    const fetchSavedRequest = async () => {
+      try {
+        const user = auth.currentUser;
+
+        if (!user) return;
+
+        const docRef = doc(db, 'requestHistory', dataId);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+          return;
+        }
+
+        const docData = docSnap.data() as AnalyticsData;
+
+        if (docData.userId !== user.uid) {
+          return;
+        }
+
+        setUrl(docData.endpointUrl);
+        setMethod(docData.requestMethod as Methods);
+        setHeaders(docData.headers as RestHeaders);
+        setBody(docData.body || '');
+      } catch (err) {
+        console.error('Error fetching data:', err);
+      }
+    };
+
+    fetchSavedRequest();
+  }, [dataId, setUrl, setMethod, setHeaders, setBody]);
 
   useEffect(() => {
     const sendAnalytics = async () => {
@@ -41,12 +75,13 @@ const RestClient = ({
 
       if (!user) return;
 
-      const userId = user.uid;
+      const newDataId = crypto.randomUUID();
 
       const analyticsData: AnalyticsData = {
-        userId: userId,
-        requestMethod: requestMethod.toUpperCase(),
-        endpointUrl: requestUrl,
+        dataId: newDataId,
+        userId: user.uid,
+        requestMethod: method?.toUpperCase() ?? 'GET',
+        endpointUrl: url ?? '',
         requestTimestamp: Date.now(),
         requestDuration: response.duration,
         responseStatusCode: response.status,
@@ -57,11 +92,11 @@ const RestClient = ({
         headers: headers,
       };
 
-      await saveAnalyticsData(analyticsData);
+      await setDoc(doc(db, 'requestHistory', newDataId), analyticsData);
     };
 
     sendAnalytics();
-  }, [body, headers, requestMethod, requestUrl, response]);
+  }, [body, headers, response, method, url]);
 
   return (
     <div className={s['wrapper']}>

@@ -1,10 +1,33 @@
-'use client';
+import HistoryAnalyticsServer from '@/components/HistoryAnalytics/HistoryAnalyticsServer';
+import { cookies } from 'next/headers';
+import { getUserFromCookie } from '@/lib/firebase-admin';
+import { fetchUserAnalytics } from '@/lib/analytics/actions';
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
-import React from 'react';
-import HistoryAnalyticsClient from '@/components/HistoryAnalytics/HistoryAnalyticsClient';
+export default async function HistoryAnalyticsPage() {
+  const cookiesList = await cookies();
+  const token = cookiesList.get('token')?.value;
 
-const HistoryAnalyticsPage = () => {
-  return <HistoryAnalyticsClient />;
-};
+  if (!token) redirect('/login');
 
-export default HistoryAnalyticsPage;
+  const user = await getUserFromCookie(token);
+
+  if (!user) redirect('/login');
+
+  const data = await fetchUserAnalytics(user.uid);
+
+  return (
+    <div>
+      <h1>History Requests</h1>
+      {data.length ? (
+        <HistoryAnalyticsServer data={data} />
+      ) : (
+        <div>
+          You haven&apos;t executed any requests yet. Try:
+          <Link href="/restful">RESTful client</Link>
+        </div>
+      )}
+    </div>
+  );
+}

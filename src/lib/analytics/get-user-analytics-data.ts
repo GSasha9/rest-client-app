@@ -14,6 +14,7 @@ export const GetUserAnalyticsData = async (
     const docData = doc.data();
 
     return {
+      dataId: docData.dataId,
       userId: docData.userId,
       requestMethod: docData.requestMethod,
       endpointUrl: docData.endpointUrl,

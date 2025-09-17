@@ -15,6 +15,7 @@ import {
 import { TFunction } from '@/validations/signInValidation.schema';
 import { auth, db } from './firebase';
 import { setDoc, doc } from 'firebase/firestore';
+import setTokenOnServer from './set-token-on-server';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -46,6 +47,7 @@ export const signInWithGoogle = async (t: TFunction) => {
       });
     }
 
+    await setTokenOnServer();
     successNotifyMessage(t('auth.success.signinGoogle'));
   } catch (err) {
     if (err instanceof Error) {
@@ -78,6 +80,7 @@ export const signUpUser = async (
       name,
       email,
     });
+    await setTokenOnServer();
     successNotifyMessage(t('auth.success.signup'));
 
     return { success: true };
@@ -102,6 +105,7 @@ export const signInUser = async (
 ) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    await setTokenOnServer();
     successNotifyMessage(t('auth.success.signin'));
 
     return { success: true };

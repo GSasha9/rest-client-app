@@ -1,4 +1,5 @@
 export interface AnalyticsData {
+  dataId: string;
   userId: string;
   requestDuration: number;
   responseStatusCode: number;

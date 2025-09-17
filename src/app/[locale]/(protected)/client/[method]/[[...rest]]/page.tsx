@@ -31,11 +31,5 @@ export default async function RestClientPage({
   console.log({ method, decodeUrl, decodeBody, headers });
   console.log({ result });
 
-  return (
-    <RestClient
-      response={result}
-      requestMethod={method.toUpperCase()}
-      requestUrl={decodeUrl}
-    />
-  );
+  return <RestClient response={result} />;
 }
