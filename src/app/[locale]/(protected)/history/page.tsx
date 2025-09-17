@@ -4,6 +4,7 @@ import { getUserFromCookie } from '@/lib/firebase-admin';
 import { fetchUserAnalytics } from '@/lib/analytics/actions';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import ROUTES from '@/shared/types/types';
 
 export default async function HistoryAnalyticsPage() {
   const cookiesList = await cookies();
@@ -25,7 +26,7 @@ export default async function HistoryAnalyticsPage() {
       ) : (
         <div>
           You haven&apos;t executed any requests yet. Try:
-          <Link href="/restful">RESTful client</Link>
+          <Link href={ROUTES.RESTFUL}> RESTful client</Link>
         </div>
       )}
     </div>
