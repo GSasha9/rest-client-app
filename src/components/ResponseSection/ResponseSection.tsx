@@ -8,7 +8,7 @@ import React from 'react';
 
 interface ResponseSectionProps {
   response?: RequestResult;
-  errorDetails: ErrorState;
+  errorDetails?: ErrorState;
 }
 const ResponseSection = ({ response, errorDetails }: ResponseSectionProps) => {
   const hasErrorHttp = errorDetails?.type === 'http';

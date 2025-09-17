@@ -20,7 +20,7 @@ import { ErrorState } from '../../utils/explain-error';
 
 interface RestClientProps {
   response?: RequestResult;
-  errorDetails: ErrorState;
+  errorDetails?: ErrorState;
 }
 
 const RestClient = ({ response, errorDetails }: RestClientProps) => {
