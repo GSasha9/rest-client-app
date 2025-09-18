@@ -1,10 +1,14 @@
-import HistoryAnalyticsServer from '@/components/HistoryAnalytics/HistoryAnalyticsServer';
 import { cookies } from 'next/headers';
 import { getUserFromCookie } from '@/lib/firebase-admin';
 import { fetchUserAnalytics } from '@/lib/analytics/actions';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import ROUTES from '@/shared/types/types';
+import dynamic from 'next/dynamic';
+
+const HistoryAnalyticsServer = dynamic(
+  () => import('@/components/HistoryAnalytics/HistoryAnalyticsServer')
+);
 
 export default async function HistoryAnalyticsPage() {
   const cookiesList = await cookies();

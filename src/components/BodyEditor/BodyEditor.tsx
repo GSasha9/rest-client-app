@@ -45,7 +45,7 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, url, setBody }) => {
         <textarea
           value={localBody || ''}
           name="body"
-          rows={2}
+          rows={5}
           cols={33}
           className={s.textarea}
           onChange={handleChange}
