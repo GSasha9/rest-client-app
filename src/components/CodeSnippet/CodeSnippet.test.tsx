@@ -2,7 +2,9 @@ import { describe, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CodeSnippet from './CodeSnippet';
 import userEvent from '@testing-library/user-event';
+import { Methods } from '../../models/rest-client';
 import { RestData } from '../../hooks/restful-url';
+import { LANGUAGES } from '@/shared/constants/languages';
 
 describe('CodeSnippet', () => {
   const mockData: RestData = {
@@ -27,13 +29,15 @@ describe('CodeSnippet', () => {
         'Go',
       ])
     );
-    expect(screen.getAllByRole('tab').length).toEqual(9);
+    expect(screen.getAllByRole('tab').length).toEqual(8);
   });
 
   it('clicking a tab generates code', async () => {
     render(<CodeSnippet data={mockData} />);
 
-    expect(screen.getByRole('tab', { selected: true })).toHaveTextContent('');
+    expect(screen.getByRole('tab', { selected: true })).toHaveTextContent(
+      LANGUAGES.jsFetch.label
+    );
 
     const curlTab = screen.getByRole('tab', { name: /curl/i });
 
@@ -42,11 +46,10 @@ describe('CodeSnippet', () => {
     expect(curlTab).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByRole('textbox')).toHaveTextContent('curl');
 
-    const emptyTab = screen.getByRole('tab', { name: '' });
+    const goTab = screen.getByRole('tab', { name: LANGUAGES.go.label });
 
-    await userEvent.click(emptyTab);
+    await userEvent.click(goTab);
 
-    expect(curlTab).toHaveAttribute('aria-selected', 'true');
-    expect(screen.getByRole('textbox')).toHaveTextContent('curl');
+    expect(curlTab).toHaveAttribute('aria-selected', 'false');
   });
 });
