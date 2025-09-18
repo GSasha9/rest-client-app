@@ -2,7 +2,6 @@ import { describe, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CodeSnippet from './CodeSnippet';
 import userEvent from '@testing-library/user-event';
-import { Methods } from '../../models/rest-client';
 import { RestData } from '../../hooks/restful-url';
 
 describe('CodeSnippet', () => {
