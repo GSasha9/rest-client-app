@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import s from './Variables.module.scss';
+import { useTranslations } from 'next-intl';
 
 interface VariableItemProps {
   variables: [string, string][];
@@ -14,6 +15,7 @@ const VariableItem = ({
   value,
   setVariables,
 }: VariableItemProps) => {
+  const t = useTranslations('restClient.variables');
   const [variableState, setVariableState] = useState(variable);
   const [valueState, setValueState] = useState(value);
 
@@ -42,7 +44,7 @@ const VariableItem = ({
           className={s.input}
           value={variableState}
           onChange={handleChangeVariable}
-          placeholder="variable"
+          placeholder={t('variable')}
           onBlur={handleBlur}
         />
         :
@@ -50,12 +52,12 @@ const VariableItem = ({
           className={s.input}
           value={valueState}
           onChange={handleChangeValue}
-          placeholder="value"
+          placeholder={t('value')}
           onBlur={handleBlur}
         />
       </div>
       <button className="default-btn" onClick={handleRemove}>
-        delete
+        {t('delete')}
       </button>
     </div>
   );

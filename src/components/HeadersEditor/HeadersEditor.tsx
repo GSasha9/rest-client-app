@@ -4,6 +4,7 @@ import s from './HeadersEditor.module.scss';
 import { HeaderElement } from './HeaderElement';
 import { RestHeaders } from '../../models/rest-client';
 import { useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface HeadersEditorProps {
   headers: RestHeaders;
@@ -16,10 +17,9 @@ const HeadersEditor = ({
   setHeaders,
   emptyHeader,
 }: HeadersEditorProps) => {
+  const t = useTranslations('restClient.restClientPage');
   const handleAddHeader = () => setHeaders({ ...headers, '': '' });
-
   const headersArray = useMemo(() => Object.entries(headers), [headers]);
-
   const handleSetHeaders = (headers: [string, string][]) =>
     setHeaders(Object.fromEntries(headers));
 
@@ -28,9 +28,9 @@ const HeadersEditor = ({
       <div
         className={`${s['title-h4']} ${emptyHeader ? s['empty-header'] : ''}`}
       >
-        Headers{' '}
+        {t('headers')}{' '}
         <button className="default-btn" onClick={handleAddHeader}>
-          add header
+          {t('addHeader')}
         </button>
       </div>
       <div className={s['content']}>

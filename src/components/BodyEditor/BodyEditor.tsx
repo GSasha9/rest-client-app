@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import s from './BodyEditor.module.scss';
 import React, { useEffect, useState } from 'react';
 interface BodyEditorProps {
@@ -8,6 +9,7 @@ interface BodyEditorProps {
   setBody: (body: string) => void;
 }
 const BodyEditor: React.FC<BodyEditorProps> = ({ body, url, setBody }) => {
+  const t = useTranslations('restClient.restClientPage');
   const [error, setError] = useState(false);
   const [localBody, setLocalBody] = useState(body);
 
@@ -40,7 +42,8 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, url, setBody }) => {
 
   return (
     <div className={`wrapper ${url ? '' : s.inactive}`}>
-      <div>Body:</div>
+      {!url && <div className={s['error-text']}>{t('bodyError')}</div>}
+      <div>{t('body')}</div>
       <div className={s['content']}>
         <textarea
           value={localBody || ''}
@@ -50,7 +53,7 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, url, setBody }) => {
           className={s.textarea}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder="enter in json format"
+          placeholder={t('bodyPlaceholder')}
           disabled={!url}
         />
         <button
@@ -59,10 +62,10 @@ const BodyEditor: React.FC<BodyEditorProps> = ({ body, url, setBody }) => {
           type="button"
           disabled={error || !url}
         >
-          Prettify
+          {t('prettify')}
         </button>
       </div>
-      {error && <p className={s['json-error']}>Invalid JSON</p>}
+      {error && <p className={s['json-error']}>{t('invalidJson')}</p>}
     </div>
   );
 };

@@ -135,6 +135,30 @@
       "400500": "Ошибка клиента {status} {statusText}. Проверьте URL или параметры запроса.",
       "more500": "Ошибка сервера {status} {statusText}. Попробуйте позже.",
       "somethingWrong": "Что-то пошло не так."
+    },
+    "restClientPage": {
+      "send": "Отправить",
+      "headers": "Заголовки:",
+      "addHeader": "добавить заголовок",
+      "body": "Тело запроса:",
+      "bodyError": "Пожалуйста, заполните поле URL",
+      "response": "Ответ:",
+      "status": "Статус:",
+      "code": "Код:",
+      "enterUrl": "Введите URL",
+      "key": "ключ",
+      "value": "значение",
+      "deleteHeader": "удалить",
+      "prettify": "отредактировать",
+      "bodyPlaceholder": "введите в формате json",
+      "invalidJson": "Некорректный JSON"
+    },
+    "variables": {
+      "variables": "Переменные:",
+      "add": "добавить",
+      "variable": "переменная",
+      "value": "значение",
+      "delete": "удалить"
     }
   }
 }

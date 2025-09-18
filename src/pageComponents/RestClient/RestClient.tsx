@@ -17,6 +17,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Methods, RestHeaders } from '@/models/rest-client';
 import { useCallback, useEffect, useState } from 'react';
 import { ErrorState } from '../../utils/explain-error';
+import { useTranslations } from 'next-intl';
 
 interface RestClientProps {
   response?: RequestResult;
@@ -24,6 +25,7 @@ interface RestClientProps {
 }
 
 const RestClient = ({ response, errorDetails }: RestClientProps) => {
+  const t = useTranslations('restClient.restClientPage');
   const [emptyHeader, setEmptyHeader] = useState(false);
   const { state, setHeaders, setMethod, setUrl, setBody, send } =
     useRestfulUrl();
@@ -121,7 +123,7 @@ const RestClient = ({ response, errorDetails }: RestClientProps) => {
             isEmptyHeader();
           }}
         >
-          Send
+          {t('send')}
         </button>
       </div>
       <HeadersEditor

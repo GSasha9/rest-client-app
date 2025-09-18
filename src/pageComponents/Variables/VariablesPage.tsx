@@ -1,10 +1,12 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useVariables } from '../../hooks/variables';
 import VariableItem from './VariableItem';
 import s from './Variables.module.scss';
 
 const VariablesPage = () => {
+  const t = useTranslations('restClient.variables');
   const [variables, setVariables] = useVariables();
   const isDisabledAdd = variables.some(([key]) => key === '');
 
@@ -13,13 +15,13 @@ const VariablesPage = () => {
   return (
     <div className={s.wrapper}>
       <h2>
-        Variables{' '}
+        {t('variables')}{' '}
         <button
           className="default-btn"
           disabled={isDisabledAdd}
           onClick={handleAddVariable}
         >
-          add
+          {t('add')}
         </button>
       </h2>
       {variables.map(([key, value]) => (

@@ -2,9 +2,9 @@ import { describe, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import CodeSnippet from './CodeSnippet';
 import userEvent from '@testing-library/user-event';
-import { Methods } from '../../models/rest-client';
-import { RestData } from '../../hooks/restful-url';
 import { LANGUAGES } from '@/shared/constants/languages';
+import { NextIntlClientProvider } from 'next-intl';
+import { RestData } from '../../models/rest-client';
 
 describe('CodeSnippet', () => {
   const mockData: RestData = {
@@ -14,7 +14,11 @@ describe('CodeSnippet', () => {
     body: 'testBody',
   };
   it('renders tabs correctly', () => {
-    render(<CodeSnippet data={mockData} />);
+    render(
+      <NextIntlClientProvider locale="en">
+        <CodeSnippet data={mockData} />{' '}
+      </NextIntlClientProvider>
+    );
 
     const tabs = screen.getAllByRole('tab');
     expect(tabs.map((t) => t.textContent)).toEqual(
@@ -33,7 +37,11 @@ describe('CodeSnippet', () => {
   });
 
   it('clicking a tab generates code', async () => {
-    render(<CodeSnippet data={mockData} />);
+    render(
+      <NextIntlClientProvider locale="en">
+        <CodeSnippet data={mockData} />
+      </NextIntlClientProvider>
+    );
 
     expect(screen.getByRole('tab', { selected: true })).toHaveTextContent(
       LANGUAGES.jsFetch.label

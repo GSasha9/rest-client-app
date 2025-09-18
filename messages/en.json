@@ -133,6 +133,30 @@
       "400500": "Client error {{status}} {{statusText}}. Check the URL or query parameters.",
       "more500": "Client error {{status} {{statusText}}. Try again later.",
       "somethingWrong": "Something went wrong."
+    },
+    "restClientPage": {
+      "send": "Send",
+      "headers": "Headers:",
+      "addHeader": "add header",
+      "body": "Body:",
+      "bodyError": "Please fill in the URL field",
+      "response": "Response:",
+      "status": "Status:",
+      "code": "Code:",
+      "enterUrl": "Enter URL",
+      "key": "key",
+      "value": "value",
+      "deleteHeader": "delete",
+      "prettify": "prettify",
+      "bodyPlaceholder": "enter in json format",
+      "invalidJson": "Invalid JSON"
+    },
+    "variables": {
+      "variables": "Variables:",
+      "add": "add",
+      "variable": "variable",
+      "value": "value",
+      "delete": "delete"
     }
   }
 }
