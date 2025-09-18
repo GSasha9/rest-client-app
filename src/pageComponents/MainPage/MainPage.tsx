@@ -9,6 +9,7 @@ import { Button, Box } from '@mui/material';
 import Link from 'next/link';
 import ROUTES from '@/shared/types/types';
 import { useEffect, useState } from 'react';
+import PageNavigation from '@/components/PageNavigation/PageNavigation';
 
 const MainPage = () => {
   const t = useTranslations();
@@ -29,7 +30,7 @@ const MainPage = () => {
   }, [loadingUser, fetchedName, user]);
 
   if (!isReady) {
-    return <div>Loading...</div>;
+    return <div>{t('loader.message')}</div>;
   }
 
   return (
@@ -41,17 +42,7 @@ const MainPage = () => {
             {` ${name}!`}
           </h1>
           <div className={s['main__content']}></div>
-          <Box>
-            <Button color="inherit" component={Link} href={ROUTES.RESTFUL}>
-              {t('dashboard.restful')}
-            </Button>
-            <Button color="inherit" component={Link} href={ROUTES.HISTORY}>
-              {t('dashboard.history')}
-            </Button>
-            <Button color="inherit" component={Link} href="/variables">
-              {t('dashboard.variables')}
-            </Button>
-          </Box>
+          <PageNavigation />
         </>
       ) : (
         <>
