@@ -28,19 +28,6 @@ export default async function RestClientPage({
     headers,
   });
 
-  // await requestToFirebase(userId, {
-  //   method: method.toUpperCase(),
-  //   url: url1,
-  //   headers,
-  //   body: body1,
-  //   timestamp: Date.now(),
-  //   duration: result.duration,
-  //   statusCode: result.status,
-  //   requestSize: result.requestSize,
-  //   responseSize: result.responseSize,
-  //   error: result.error,
-  // });
-
   console.log({ method, decodeUrl, decodeBody, headers });
   console.log({ result });
 

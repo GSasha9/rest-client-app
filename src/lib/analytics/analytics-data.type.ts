@@ -1,4 +1,5 @@
 export interface AnalyticsData {
+  dataId: string;
   userId: string;
   requestDuration: number;
   responseStatusCode: number;
@@ -8,4 +9,6 @@ export interface AnalyticsData {
   responseSize: number;
   errorDetails: string;
   endpointUrl: string;
+  headers?: Record<string, string>;
+  body?: string | null;
 }

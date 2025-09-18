@@ -1,3 +1,3 @@
-export type FetchedAnalyticsData = {
-  id: string;
-}[];
+import { AnalyticsData } from '@/lib/analytics';
+
+export type FetchedAnalyticsData = AnalyticsData[];

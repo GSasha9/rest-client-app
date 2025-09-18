@@ -10,6 +10,8 @@ import theme, { ADDITION_COLOR } from '../../theme/theme';
 import Buttons from './Buttons';
 import FadeMenu from './FadeMenu';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import { usePathname } from 'next/navigation';
+import PageNavigation from '../PageNavigation/PageNavigation';
 
 const getStyles = (fixed: boolean) => ({
   wrapper: {
@@ -50,6 +52,9 @@ const getStyles = (fixed: boolean) => ({
 const Header: React.FC = () => {
   const [fix, setFix] = useState(false);
   const styles = getStyles(fix);
+  const pathname = usePathname();
+
+  const currentRoute = pathname.split('/').pop();
 
   const isSmallScreen = useMediaQuery((t: Theme) => t?.breakpoints.down('md'));
 
@@ -90,18 +95,27 @@ const Header: React.FC = () => {
             </Box>
           </Link>
         </Stack>
-        <Stack direction="row" gap={2}>
-          {isSmallScreen ? (
-            <>
-              <FadeMenu />
-            </>
-          ) : (
-            <>
+
+        {isSmallScreen ? (
+          <>
+            <FadeMenu />
+          </>
+        ) : (
+          <>
+            {currentRoute === ROUTES.MAIN_PAGE ||
+            currentRoute === 'ru' ||
+            currentRoute === 'en' ||
+            isSmallScreen ? null : (
+              <Stack direction="row" gap={2}>
+                <PageNavigation />
+              </Stack>
+            )}
+            <Stack direction="row" gap={2}>
               <LanguageSwitcher />
               <Buttons />
-            </>
-          )}
-        </Stack>
+            </Stack>
+          </>
+        )}
       </Box>
     </Container>
   );

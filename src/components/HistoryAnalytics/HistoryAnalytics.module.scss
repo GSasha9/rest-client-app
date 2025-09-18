@@ -1,0 +1,21 @@
+@use '../../styles/variables.module.scss' as *;
+
+.analytics-data {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding-top: $spacing-lg;
+
+  .button-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 1px solid black;
+
+    .button-link-method {
+      color: $success-main;
+      font-weight: bold;
+      padding-right: $spacing-sm;
+    }
+  }
+}

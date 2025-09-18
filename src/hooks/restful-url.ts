@@ -115,3 +115,5 @@ export function useRestfulUrl() {
 
   return { state, setHeaders, setMethod, setUrl, setBody, send };
 }
+
+export type { RestData };

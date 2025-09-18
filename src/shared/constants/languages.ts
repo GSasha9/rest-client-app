@@ -1,9 +1,4 @@
 export const LANGUAGES = {
-  none: {
-    label: '',
-    language: '',
-    variant: '',
-  },
   jsFetch: {
     label: 'Java Script (Fetch API)',
     language: 'javascript',
