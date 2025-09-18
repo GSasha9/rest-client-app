@@ -14,7 +14,7 @@ interface CodeSnippetProps {
 
 const CodeSnippet = ({ data }: CodeSnippetProps) => {
   const [result, setResult] = useState('');
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string | false>(false);
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     if (newValue === '') return;
@@ -52,6 +52,15 @@ const CodeSnippet = ({ data }: CodeSnippetProps) => {
             value={value}
             aria-label="basic tabs example"
             onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            sx={{
+              width: '100%',
+              '& .MuiTab-root': {
+                minWidth: 80,
+                fontSize: { xs: '0.7rem', sm: '0.85rem', md: '1rem' },
+              },
+            }}
           >
             {Object.keys(LANGUAGES).map((el) => {
               const key = el as keyof typeof LANGUAGES;
