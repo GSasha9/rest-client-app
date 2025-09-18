@@ -5,12 +5,14 @@ import s from './MainPage.module.scss';
 import { auth } from '@/lib/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import useUserName from '@/hooks/use-user-name';
-import { Button, Box } from '@mui/material';
+import { Button, Box, Stack } from '@mui/material';
 import Link from 'next/link';
 import ROUTES from '@/shared/types/types';
 import { useEffect, useState } from 'react';
 import PageNavigation from '@/components/PageNavigation/PageNavigation';
 import Developers from '@/components/Developers/Developers';
+import ComponentSlider from '@/components/ComponentSlider/ComponentSlider';
+import ProjectAndCourse from '@/components/ProjectAndCourse/ProjectAndCourse';
 
 const MainPage = () => {
   const t = useTranslations();
@@ -37,17 +39,32 @@ const MainPage = () => {
   return (
     <>
       {user ? (
-        <>
+        <Stack
+          direction="column"
+          gap={5}
+          alignItems="center"
+          justifyContent="center"
+        >
           <h1 className={s['main__title']}>
             {t('main.welcomeUser')}
             {` ${name}!`}
           </h1>
           <div className={s['main__content']}></div>
           <PageNavigation />
-          <Developers />
-        </>
+          <ComponentSlider
+            slides={[
+              <Developers key={crypto.randomUUID()} />,
+              <ProjectAndCourse key={crypto.randomUUID()} />,
+            ]}
+          />
+        </Stack>
       ) : (
-        <>
+        <Stack
+          direction="column"
+          gap={5}
+          alignItems="center"
+          justifyContent="center"
+        >
           <h1 className={s['main__title']}>{t('main.welcome')}</h1>
           <div className={s['main__content']}></div>
           <Box>
@@ -58,7 +75,7 @@ const MainPage = () => {
               {t('header.signUp')}
             </Button>
           </Box>
-        </>
+        </Stack>
       )}
     </>
   );

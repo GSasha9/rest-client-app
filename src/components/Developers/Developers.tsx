@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Card,
   CardActionArea,
@@ -6,29 +8,32 @@ import {
   Typography,
   Stack,
 } from '@mui/material';
-
-const developersInfo = [
-  {
-    name: 'Kseniya Sharshneva',
-    role: 'Front-end developer',
-    contribution: 'REST Client, Variables',
-    img: '/ava3.png',
-  },
-  {
-    name: 'Alexandra Hurbanava',
-    role: 'Front-end developer',
-    contribution: 'History and Analytics, Main Page',
-    img: '/sasha.png',
-  },
-  {
-    name: 'Maxim Dudaryonak',
-    role: 'Front-end developer',
-    contribution: 'Authorization, Header, Footer',
-    img: '/maxim.png',
-  },
-];
+import { useTranslations } from 'next-intl';
 
 const Developers = () => {
+  const t = useTranslations();
+
+  const developersInfo = [
+    {
+      name: t('ksusha'),
+      role: 'Front-end developer',
+      contribution: 'REST Client, Variables',
+      img: '/ava3.png',
+    },
+    {
+      name: t('sasha'),
+      role: 'Front-end developer',
+      contribution: 'History and Analytics, Main Page',
+      img: '/sasha.png',
+    },
+    {
+      name: t('maxim'),
+      role: 'Front-end developer',
+      contribution: 'Authorization, Header, Footer',
+      img: '/maxim.png',
+    },
+  ];
+
   return (
     <Stack direction="row" alignItems="center" gap={4}>
       {developersInfo.map((el) => {
