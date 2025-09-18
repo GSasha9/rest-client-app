@@ -10,6 +10,7 @@ import Link from 'next/link';
 import ROUTES from '@/shared/types/types';
 import { useEffect, useState } from 'react';
 import PageNavigation from '@/components/PageNavigation/PageNavigation';
+import Developers from '@/components/Developers/Developers';
 
 const MainPage = () => {
   const t = useTranslations();
@@ -43,6 +44,7 @@ const MainPage = () => {
           </h1>
           <div className={s['main__content']}></div>
           <PageNavigation />
+          <Developers />
         </>
       ) : (
         <>
