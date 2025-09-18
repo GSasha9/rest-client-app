@@ -72,6 +72,18 @@ const Header: React.FC = () => {
     return () => window.addEventListener('scroll', setFixed);
   }, []);
 
+  const hiddenRoutes = [
+    ROUTES.MAIN_PAGE,
+    ROUTES.SIGN_IN,
+    ROUTES.SIGN_UP,
+    'ru',
+    'en',
+  ];
+
+  const shouldHideNav = currentRoute
+    ? hiddenRoutes.includes(currentRoute) || isSmallScreen
+    : null;
+
   return (
     <Container
       component="header"
@@ -102,10 +114,7 @@ const Header: React.FC = () => {
           </>
         ) : (
           <>
-            {currentRoute === ROUTES.MAIN_PAGE ||
-            currentRoute === 'ru' ||
-            currentRoute === 'en' ||
-            isSmallScreen ? null : (
+            {shouldHideNav ? null : (
               <Stack direction="row" gap={2}>
                 <PageNavigation />
               </Stack>

@@ -116,5 +116,12 @@
       "unknown": "An unknown error occurred",
       "token": "Firebase session token expired"
     }
-  }
+  },
+  "aboutProject": "We built a lightweight alternative to Postman using React 18 and a modern framework. The application features user registration and authentication, a full REST client with method selection, URL input, request and headers editor, as well as response viewer and code generation. We also implemented request history and variable support to make the tool more practical for everyday use. The project is written in TypeScript, covered with tests ensuring at least 80% coverage, and includes private routes, a 404 page, and an error boundary. We configured linting, formatting, and Husky hooks to maintain code quality. Development was carried out by a team of three members following a Git workflow, and the final application is deployed on a public hosting platform.",
+  "project": "About project",
+  "course": "Course",
+  "aboutCourse": "The ReactJS course at RS School is a free training program where students learn modern React development with TypeScript. The course covers hooks, state management, routing, testing, and application optimization. The learning process is based on practice and assignments, culminating in a final project and a certificate.",
+  "ksusha": "Kseniya",
+  "maxim": "Maxim",
+  "sasha": "Alexandra"
 }
