@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import s from './UrlEditor.module.scss';
+import { useTranslations } from 'next-intl';
 
 interface UrlEditorProps {
   input: string | null;
@@ -9,6 +10,7 @@ interface UrlEditorProps {
 }
 
 const UrlEditor = ({ input, setInput }: UrlEditorProps) => {
+  const t = useTranslations('restClient.restClientPage');
   const [localValue, setLocalValue] = useState(input);
 
   useEffect(() => {
@@ -20,12 +22,14 @@ const UrlEditor = ({ input, setInput }: UrlEditorProps) => {
       <input
         value={localValue || ''}
         className={s.input}
-        placeholder="Enter URL"
-        onChange={(e) => {
-          setLocalValue(e.target.value);
-          setInput(e.target.value);
-        }}
-      />
+        placeholder={t('enterUrl')}
+        onChange={(e) => setLocalValue(e.target.value)}
+        // onChange={(e) => {
+        //   setLocalValue(e.target.value);
+        //   setInput(e.target.value);
+        // }}
+        onBlur={() => setInput(localValue || '')}
+      ></input>
     </div>
   );
 };

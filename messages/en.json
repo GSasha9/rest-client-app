@@ -123,5 +123,40 @@
   "aboutCourse": "The ReactJS course at RS School is a free training program where students learn modern React development with TypeScript. The course covers hooks, state management, routing, testing, and application optimization. The learning process is based on practice and assignments, culminating in a final project and a certificate.",
   "ksusha": "Kseniya",
   "maxim": "Maxim",
-  "sasha": "Alexandra"
+  "sasha": "Alexandra",
+  "restClient": {
+    "queryErrorMessages": {
+      "cors": "CORS Error: The server rejected the request due to security policy.",
+      "network": "Network error. Check your connection or try again later.",
+      "timeout": "Request timed out.",
+      "unknownError": "Unknown error. Please try again.",
+      "400500": "Client error {{status}} {{statusText}}. Check the URL or query parameters.",
+      "more500": "Client error {{status} {{statusText}}. Try again later.",
+      "somethingWrong": "Something went wrong."
+    },
+    "restClientPage": {
+      "send": "Send",
+      "headers": "Headers:",
+      "addHeader": "add header",
+      "body": "Body:",
+      "bodyError": "Please fill in the URL field",
+      "response": "Response:",
+      "status": "Status:",
+      "code": "Code:",
+      "enterUrl": "Enter URL",
+      "key": "key",
+      "value": "value",
+      "deleteHeader": "delete",
+      "prettify": "prettify",
+      "bodyPlaceholder": "enter in json format",
+      "invalidJson": "Invalid JSON"
+    },
+    "variables": {
+      "variables": "Variables:",
+      "add": "add",
+      "variable": "variable",
+      "value": "value",
+      "delete": "delete"
+    }
+  }
 }

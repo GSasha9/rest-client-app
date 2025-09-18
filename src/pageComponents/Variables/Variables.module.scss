@@ -1,17 +1,32 @@
-@use '../../styles/variables.scss' as *;
+@use '../../styles/variables' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
 .wrapper {
-  position: relative;
-  width: 100%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 12px;
+  padding: 26px;
   background-color: var(--bg-card);
   box-shadow: 3px 3px 4px var(--bg-card-shadow);
   border-radius: 4px;
-  gap: 4px;
+  gap: 26px;
 }
+
+.variable-item {
+  display: flex;
+  gap: 20px;
+}
+.key-value {
+  display: flex;
+  gap: 6px;
+}
+
 .input {
   font-size: 18px;
   width: 100%;
@@ -28,29 +43,5 @@
   &:focus {
     background-color: var(--bg-input-focus);
     outline: none;
-  }
-}
-.content {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 10px;
-}
-.header-item {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-.empty-header {
-  background-color: var(--bg-card-shadow-inactive);
-
-  &::before {
-    content: 'Please fill in all header fields or delete unnecessary ones';
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    color: var(--text-error);
   }
 }
