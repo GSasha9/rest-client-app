@@ -17,8 +17,6 @@ const MainPage = () => {
   const [name, setName] = useState<string | null>(null);
   const fetchedName = useUserName();
 
-  console.log(fetchedName);
-
   useEffect(() => {
     if (!loadingUser) {
       if (!user) {

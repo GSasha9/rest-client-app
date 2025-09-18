@@ -2,13 +2,14 @@
 
 import React from 'react';
 import SignUpForm from '@/components/SignUpForm';
+import ProtectedAuthRoute from '@/components/ProtectedAuthRoute';
 
 const SignUpPage = () => {
-
-  return <SignUpForm />;
-
-    <SignUpForm />
-
+  return (
+    <ProtectedAuthRoute>
+      <SignUpForm />
+    </ProtectedAuthRoute>
+  );
 };
 
 export default SignUpPage;
