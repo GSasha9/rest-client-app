@@ -25,7 +25,7 @@ export const STYLES = genStyles({
   errorForm: {
     position: 'absolute',
     left: 0,
-    color: ADDITION_COLOR.mainLight,
+    color: ADDITION_COLOR.secondary,
     fontFamily: ADDITION_COLOR.fontMessage,
     fontSize: '0.6rem',
   },

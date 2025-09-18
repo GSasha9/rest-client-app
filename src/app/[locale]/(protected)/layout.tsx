@@ -1,7 +1,7 @@
-import ProtectedAuthRoute from '../../../components/ProtectedAuthRoute';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const ProtectedAuthLayout = ({ children }: { children: React.ReactNode }) => {
-  return <ProtectedAuthRoute>{children} </ProtectedAuthRoute>;
+  return <ProtectedRoute>{children} </ProtectedRoute>;
 };
 
 export default ProtectedAuthLayout;
