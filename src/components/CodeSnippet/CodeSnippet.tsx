@@ -14,7 +14,7 @@ interface CodeSnippetProps {
 
 const CodeSnippet = ({ data }: CodeSnippetProps) => {
   const [result, setResult] = useState('');
-  const [value, setValue] = useState<string | false>(false);
+  const [value, setValue] = useState<string>(LANGUAGES.jsFetch.label);
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     if (newValue === '') return;
@@ -56,9 +56,13 @@ const CodeSnippet = ({ data }: CodeSnippetProps) => {
             scrollButtons="auto"
             sx={{
               width: '100%',
+              '& .MuiTabs-flexContainer': {
+                flexWrap: 'nowrap',
+              },
               '& .MuiTab-root': {
-                minWidth: 80,
-                fontSize: { xs: '0.7rem', sm: '0.85rem', md: '1rem' },
+                minWidth: { xs: 50, sm: 70, md: 80 },
+                fontSize: { xs: '0.6rem', sm: '0.75rem', md: '1rem' },
+                padding: { xs: '4px 6px', sm: '6px 10px', md: '8px 12px' },
               },
             }}
           >
