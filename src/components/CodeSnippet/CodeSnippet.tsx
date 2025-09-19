@@ -7,12 +7,14 @@ import { useState } from 'react';
 import ReactCodeMirror from '@uiw/react-codemirror';
 import './CodeSnippet.scss';
 import { RestData } from '../../models/rest-client';
+import { useTranslations } from 'next-intl';
 
 interface CodeSnippetProps {
   data: RestData;
 }
 
 const CodeSnippet = ({ data }: CodeSnippetProps) => {
+  const t = useTranslations('restClient.restClientPage');
   const [result, setResult] = useState('');
   const [value, setValue] = useState<string>(LANGUAGES.jsFetch.label);
 
@@ -44,7 +46,7 @@ const CodeSnippet = ({ data }: CodeSnippetProps) => {
 
   return (
     <div className="code">
-      <h4 className="title-h4">Code</h4>
+      <h4 className="title-h4">{t('code')}</h4>
 
       <div className="code-snippet">
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

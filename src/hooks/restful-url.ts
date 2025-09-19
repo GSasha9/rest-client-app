@@ -7,8 +7,11 @@ import { decodeBase64 } from '../utils/decode-base64';
 import { encodeBase64 } from '../utils/encode-base64';
 import { searchParamsToObject } from '../utils/search-param-to-object';
 import { isMethod } from '../models/typeguard/request';
+import { useVariables } from './variables';
+import { applyVariables } from '../utils/apply-variables';
 
 export function useRestfulUrl() {
+  const [variables] = useVariables();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -33,15 +36,9 @@ export function useRestfulUrl() {
 
     if (encodedBody) {
       try {
-        const bodyStr = decodeBase64(encodedBody);
-
-        body = bodyStr;
+        body = JSON.stringify(JSON.parse(decodeBase64(encodedBody)), null, 4);
       } catch {
-        try {
-          body = decodeBase64(encodedBody);
-        } catch {
-          body = null;
-        }
+        body = null;
       }
     }
 
@@ -58,19 +55,15 @@ export function useRestfulUrl() {
   const send = useCallback(() => {
     const merged: RestData = {
       method: state.method ?? 'GET',
-      url: state.url ?? '',
-      body: state.body ?? undefined,
+      url: applyVariables(variables, state.url) || '',
+      body: applyVariables(variables, state.body),
       headers: state.headers,
     };
 
     const encUrl = merged.url ? encodeBase64(merged.url) : '';
     const encBody =
       merged.body !== undefined && merged.body !== null
-        ? encodeBase64(
-            typeof merged.body === 'string'
-              ? merged.body
-              : JSON.stringify(merged.body)
-          )
+        ? encodeBase64(JSON.stringify(JSON.parse(merged.body)))
         : null;
 
     let path = `/client/${merged.method}/${encUrl}`;
@@ -80,18 +73,17 @@ export function useRestfulUrl() {
     const query = new URLSearchParams();
 
     Object.entries(merged.headers ?? {}).forEach(([key, value]) => {
-      if (value === null) {
-        query.delete(key);
-      } else {
-        query.set(key, value);
-      }
+      query.set(
+        applyVariables(variables, key) || key,
+        applyVariables(variables, value) || value
+      );
     });
 
     const qs = query.toString();
     const href = path + (qs ? `?${qs}` : '');
 
     router.replace(href);
-  }, [router, state.body, state.headers, state.method, state.url]);
+  }, [router, state.body, state.headers, state.method, state.url, variables]);
 
   const setHeaders = useCallback(
     (headers: RestHeaders) => setState((prev) => ({ ...prev, headers })),

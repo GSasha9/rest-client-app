@@ -4,8 +4,7 @@
   position: relative;
   background-color: var(--bg-card-shadow-inactive);
 }
-.inactive::before {
-  content: 'Please fill in the URL field';
+.error-text {
   position: absolute;
   top: 12px;
   right: 12px;

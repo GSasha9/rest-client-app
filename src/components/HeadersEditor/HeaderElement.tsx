@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import s from './HeadersEditor.module.scss';
 import { useState } from 'react';
 
@@ -16,6 +17,7 @@ export const HeaderElement = ({
   index,
   setData,
 }: HeaderElementProps) => {
+  const t = useTranslations('restClient.restClientPage');
   const [key, setKey] = useState(headerKey);
   const [value, setValue] = useState(headerValue);
   const [error, setError] = useState(false);
@@ -45,7 +47,7 @@ export const HeaderElement = ({
     <div className={s['header-item']}>
       <input
         className={`${s['input']} ${error ? s['error'] : ''}`}
-        placeholder="key"
+        placeholder={t('key')}
         value={key}
         onChange={handleChangeKey}
         onBlur={handleSetHeader}
@@ -53,14 +55,14 @@ export const HeaderElement = ({
       />
       <input
         className={s['input']}
-        placeholder="value"
+        placeholder={t('value')}
         value={value}
         onChange={handleChangeValue}
         onBlur={handleSetHeader}
         name="value"
       />
       <button className="default-btn" onClick={handleRemove}>
-        delete
+        {t('deleteHeader')}
       </button>
     </div>
   );
