@@ -6,6 +6,21 @@
   gap: $spacing-sm;
   padding-top: $spacing-lg;
 
+  .analytics-table {
+    border-collapse: collapse;
+    th {
+      padding: 0 10px;
+    }
+    td {
+      border: 1px solid #494848;
+      text-align: center;
+      max-width: 400px;
+      padding: 0 10px;
+      word-break: break-word;
+      white-space: normal;
+    }
+  }
+
   .button-link {
     background: none;
     border: none;
