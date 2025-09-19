@@ -1,10 +1,10 @@
-import { screen, fireEvent, getByText, render } from '@testing-library/react';
 import { vi } from 'vitest';
 import {
-  mockSetVariables,
   mockVariables,
   renderVariablesPage,
 } from '../../test-utils/mocks/variables-page.mock';
+import { fireEvent, screen } from '@testing-library/dom';
+import { mockSetVariables } from '../../test-utils/mocks/variables-page.mock';
 
 describe('VariablesPage', () => {
   beforeEach(() => {
@@ -22,14 +22,14 @@ describe('VariablesPage', () => {
     renderVariablesPage();
 
     const items = screen.getAllByTestId('variable-item');
-    expect(items).toHaveLength(1);
-    expect(items[0]).toHaveTextContent('aa:abc');
+    expect(items).toHaveLength(2);
+    expect(items[0]).toHaveTextContent('aa:aaaa');
+    expect(items[1]).toHaveTextContent('bb:bbbb');
   });
 
   it('clicking on Add calls setVariables with a new empty pair', () => {
     renderVariablesPage();
-
-    fireEvent.click(screen.getByText('add'));
+    fireEvent.click(screen.getByRole('button', { name: /add/i }));
     expect(mockSetVariables).toHaveBeenCalledWith([...mockVariables, ['', '']]);
   });
 
@@ -38,7 +38,8 @@ describe('VariablesPage', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /add/i }));
     expect(mockSetVariables).toHaveBeenCalledWith([
-      ['aa', 'abc'],
+      ['aa', 'aaaa'],
+      ['bb', 'bbbb'],
       ['', ''],
     ]);
   });
