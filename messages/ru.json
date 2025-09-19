@@ -75,13 +75,24 @@
     }
   },
   "history": {
+    "title": "История запросов",
     "noRequests": "Вы еще не выполнили ни одного запроса",
     "tryRESTful": "Попробовать RESTful клиент",
     "errorParsingHistory": "Ошибка получения данных об истории",
     "errorParsingHeaders": "Ошибка получения данных о заголовках",
     "errorHistoryCleared": "Ошибка при очистке данных истории",
     "historyCleared": "История очищена",
-    "clearHistory": "Очистить историю"
+    "clearHistory": "Очистить историю",
+    "columnsName": {
+      "duration": "Длительность",
+      "statusCode": "Код ответа",
+      "timestamp": "Время",
+      "method": "Метод",
+      "requestSize": "Размер запроса",
+      "responseSize": "Размер ответа",
+      "error": "Текст ошибки",
+      "endpoint": "URL эндпоинта"
+    }
   },
   "restful": {
     "title": "RESTful клиент",

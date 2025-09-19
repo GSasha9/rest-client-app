@@ -74,12 +74,23 @@
     }
   },
   "history": {
+    "title": "History Requests",
     "noRequests": "You haven't executed any requests yet",
     "errorParsingHistory": "Error parsing history",
     "errorParsingHeaders": "Error parsing headers",
     "errorHistoryCleared": "Error clearing history data",
     "historyCleared": "History cleared",
-    "clearHistory": "Clear history"
+    "clearHistory": "Clear history",
+    "columnsName": {
+      "duration": "Duration",
+      "statusCode": "Status Code",
+      "timestamp": "Timestamp",
+      "method": "Method",
+      "requestSize": "Request Size",
+      "responseSize": "Response Size",
+      "error": "Error Details",
+      "endpoint": "Endpoint"
+    }
   },
   "restful": {
     "title": "RESTful Client",
