@@ -32,13 +32,6 @@ export const signInWithGoogle = async (t: TFunction) => {
     const docs = await getDocs(q);
 
     if (docs.docs.length === 0) {
-      // await addDoc(collection(db, 'users'), {
-      //   uid: user.uid,
-      //   name: user.displayName,
-      //   authProvider: 'google',
-      //   email: user.email,
-      // });
-
       await setDoc(doc(db, 'users', user.uid), {
         uid: user.uid,
         name: user.displayName,
@@ -67,13 +60,6 @@ export const signUpUser = async (
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = res;
-
-    // await addDoc(collection(db, 'users'), {
-    //   uid: user.uid,
-    //   name,
-    //   authProvider: 'local',
-    //   email,
-    // });
 
     await setDoc(doc(db, 'users', user.uid), {
       uid: user.uid,
@@ -130,7 +116,7 @@ export const signOutUser = async (t: TFunction, extraMsg?: string) => {
     if (extraMsg) {
       warningNotifyMessage(extraMsg);
     } else {
-      warningNotifyMessage(t('auth.success.signup'));
+      successNotifyMessage(t('auth.success.signout'));
     }
   } catch (err) {
     if (err instanceof Error) {

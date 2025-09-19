@@ -1,21 +1,12 @@
-import { cookies } from 'next/headers';
-import { getUserFromCookie } from '@/lib/firebase-admin';
 import { fetchUserAnalytics } from '@/lib/analytics/actions';
-import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import HistoryAnalyticsServer from '@/components/HistoryAnalytics/HistoryAnalyticsServer';
-
-import ROUTES from '@/shared/types/types';
+import { tockenCheck } from '@/utils/token-check';
 
 export default async function HistoryAnalyticsPage() {
-  const cookiesList = await cookies();
-  const token = cookiesList.get('token')?.value;
+  const user = await tockenCheck();
 
-  if (!token) redirect(ROUTES.SIGN_IN);
-
-  const user = await getUserFromCookie(token);
-
-  if (!user) redirect(ROUTES.SIGN_IN);
+  if (!user) return;
 
   const data = await fetchUserAnalytics(user.uid);
 

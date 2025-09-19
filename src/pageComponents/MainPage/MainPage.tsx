@@ -9,10 +9,8 @@ import { Button, Box, Stack } from '@mui/material';
 import Link from 'next/link';
 import ROUTES from '@/shared/types/types';
 import { useEffect, useState } from 'react';
+import MainContent from './MainContent';
 import PageNavigation from '@/components/PageNavigation/PageNavigation';
-import Developers from '@/components/Developers/Developers';
-import ComponentSlider from '@/components/ComponentSlider/ComponentSlider';
-import ProjectAndCourse from '@/components/ProjectAndCourse/ProjectAndCourse';
 
 const MainPage = () => {
   const t = useTranslations();
@@ -49,14 +47,10 @@ const MainPage = () => {
             {t('main.welcomeUser')}
             {` ${name}!`}
           </h1>
-          <div className={s['main__content']}></div>
           <PageNavigation />
-          <ComponentSlider
-            slides={[
-              <Developers key={crypto.randomUUID()} />,
-              <ProjectAndCourse key={crypto.randomUUID()} />,
-            ]}
-          />
+          <div className={s['main__content']}>
+            <MainContent />
+          </div>
         </Stack>
       ) : (
         <Stack
@@ -66,7 +60,10 @@ const MainPage = () => {
           justifyContent="center"
         >
           <h1 className={s['main__title']}>{t('main.welcome')}</h1>
-          <div className={s['main__content']}></div>
+          <div className={s['main__content']}>
+            {' '}
+            <MainContent />
+          </div>
           <Box>
             <Button color="inherit" component={Link} href={ROUTES.SIGN_IN}>
               {t('header.login')}
