@@ -4,8 +4,7 @@ import s from './MethodEditor.module.scss';
 import { MenuItem, Select } from '@mui/material';
 import { REQUEST_METHODS } from '../../shared/constants/request-methods';
 import { Methods } from '../../models/rest-client';
-
-interface MethodEditorProps {
+export interface MethodEditorProps {
   method: Methods | null;
   setMethod: (method: Methods) => void;
 }

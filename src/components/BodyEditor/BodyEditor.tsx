@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import s from './BodyEditor.module.scss';
 import React, { useEffect, useState } from 'react';
-interface BodyEditorProps {
+export interface BodyEditorProps {
   body?: string | null;
   url: string | null;
   setBody: (body: string) => void;

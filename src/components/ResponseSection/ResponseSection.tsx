@@ -7,7 +7,7 @@ import s from './ResponseSection.module.scss';
 import React from 'react';
 import { useTranslations } from 'next-intl';
 
-interface ResponseSectionProps {
+export interface ResponseSectionProps {
   response?: RequestResult;
   errorDetails?: ErrorState;
 }

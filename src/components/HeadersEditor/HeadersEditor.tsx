@@ -6,7 +6,7 @@ import { RestHeaders } from '../../models/rest-client';
 import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
-interface HeadersEditorProps {
+export interface HeadersEditorProps {
   headers: RestHeaders;
   setHeaders: (headers: RestHeaders) => void;
   emptyHeader: boolean;

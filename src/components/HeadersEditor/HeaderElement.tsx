@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import s from './HeadersEditor.module.scss';
 import { useState } from 'react';
 
-interface HeaderElementProps {
+export interface HeaderElementProps {
   headers: [string, string][];
   headerKey: string;
   headerValue: string;

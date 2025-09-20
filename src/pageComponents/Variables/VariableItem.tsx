@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import s from './Variables.module.scss';
 import { useTranslations } from 'next-intl';
 
-interface VariableItemProps {
+export interface VariableItemProps {
   variables: [string, string][];
   variable: string;
   value: string;
