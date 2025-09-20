@@ -22,12 +22,18 @@ const SignInWithGoogle: React.FC = () => {
 
   return (
     <Box sx={STYLES.content}>
-      <Typography sx={STYLES.googleFont} component="h2" variant="body2">
+      <Typography
+        sx={STYLES.googleFont}
+        component="h2"
+        variant="body2"
+        data-testid="google-title"
+      >
         {t('form.subtitle.google')}
       </Typography>
       <Box
         style={{ display: 'flex', justifyContent: 'center' }}
         onClick={signInGoogle}
+        data-testid="button-wrapper"
       >
         <GoogleSignInButton title={t('form.button.google')} />
       </Box>
