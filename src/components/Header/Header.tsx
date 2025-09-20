@@ -115,11 +115,11 @@ const Header: React.FC = () => {
         ) : (
           <>
             {shouldHideNav ? null : (
-              <Stack direction="row" gap={2}>
+              <Stack direction="row" gap={2} data-testid="page-navigation">
                 <PageNavigation />
               </Stack>
             )}
-            <Stack direction="row" gap={2}>
+            <Stack direction="row" gap={2} data-testid="language-switcher">
               <LanguageSwitcher />
               <Buttons />
             </Stack>
