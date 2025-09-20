@@ -1,16 +1,8 @@
-// import dynamic from 'next/dynamic';
-// import { tockenCheck } from '@/utils/token-check';
 import VariablesPage from '../../../../pageComponents/Variables';
-
-// export const VariablesPage = dynamic(
-//   () =>
-//     import('@/pageComponents/Variables', {
-//       ssr: false,
-//     })
-// );
+import { tockenCheck } from '../../../../utils/token-check';
 
 export default async function Page() {
-  // await tockenCheck();
+  await tockenCheck();
 
   return <VariablesPage />;
 }
