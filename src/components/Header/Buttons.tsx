@@ -7,6 +7,7 @@ import SignOutButton from '../SignOutButton';
 import SignUpButton from '../SignUpButton';
 import withUser from '../../utils/withUser';
 import theme from '../../theme/theme';
+import React from 'react';
 
 const STYLES = {
   wrapper: {
@@ -27,7 +28,7 @@ const Buttons = ({ user }: IProps) => {
   if (user) return <SignOutButton />;
 
   return (
-    <Box sx={STYLES.wrapper}>
+    <Box sx={STYLES.wrapper} data-testid="buttons">
       <SignInButton />
       <SignUpButton />
     </Box>

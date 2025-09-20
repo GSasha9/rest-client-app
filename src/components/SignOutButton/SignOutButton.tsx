@@ -30,6 +30,7 @@ const SignOutButton: React.FC = () => {
       onClick={onClickSignOut}
       endIcon={<LogoutIcon />}
       sx={STYLES.button}
+      data-testid="buttons"
     >
       {t('header.logout')}
     </Button>
