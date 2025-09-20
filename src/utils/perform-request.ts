@@ -17,12 +17,12 @@ export interface RequestResult {
   error?: string;
 }
 
-export async function performRequest({
+export const performRequest = async ({
   method,
   url,
   body,
   headers,
-}: RequestParams): Promise<RequestResult> {
+}: RequestParams): Promise<RequestResult> => {
   const start = Date.now();
   let responseText = '';
   let responseHeaders: Record<string, string> = {};
@@ -67,4 +67,4 @@ export async function performRequest({
       error: err instanceof Error ? err.message : 'Unknown error',
     };
   }
-}
+};
