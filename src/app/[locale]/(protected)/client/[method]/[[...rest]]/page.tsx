@@ -32,9 +32,6 @@ export default async function RestClientPage({
     headers: headersObject,
   });
 
-  // console.log({ method, decodeUrl, decodeBody, headers });
-  // console.log({ result });
-
   const errorDetails = explainError(
     {
       ok: result.ok,

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import SignInForm from '@/components/SigInForm';
 import ProtectedAuthRoute from '@/components/ProtectedAuthRoute';
