@@ -1,7 +1,7 @@
 import { fetchUserAnalytics } from '@/lib/analytics/actions';
 import { getTranslations } from 'next-intl/server';
-import HistoryAnalyticsServer from '@/components/HistoryAnalytics/HistoryAnalyticsServer';
 import { tockenCheck } from '@/utils/token-check';
+import HistoryAnalyticsServerWrapper from '../../../../components/HistoryAnalytics/HistoryAnalyticsServerWrapper';
 
 export default async function HistoryAnalyticsPage() {
   const user = await tockenCheck();
@@ -22,5 +22,7 @@ export default async function HistoryAnalyticsPage() {
     t('endpoint'),
   ];
 
-  return <HistoryAnalyticsServer data={data} columnHeaders={columnHeaders} />;
+  return (
+    <HistoryAnalyticsServerWrapper data={data} columnHeaders={columnHeaders} />
+  );
 }

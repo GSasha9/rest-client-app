@@ -3,7 +3,7 @@ import s from './HistoryAnalytics.module.scss';
 import ROUTES from '@/shared/types/types';
 import { FetchedAnalyticsData } from './models/types/fetched-analytics-data';
 
-interface HistoryAnalyticsServerProps {
+export interface HistoryAnalyticsServerProps {
   data?: FetchedAnalyticsData;
   columnHeaders: string[];
 }
