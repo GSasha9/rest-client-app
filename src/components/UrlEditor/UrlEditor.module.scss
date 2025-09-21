@@ -1,0 +1,20 @@
+@use '../../styles/variables.scss' as *;
+
+.input {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid var(--ava-border);
+  border-radius: 4px;
+  font-size: 18px;
+  color: var(--text-color-accent);
+
+  background-color: var(--bg-input);
+  box-shadow: inset 2px 2px 1px 1px var(--shadow-input);
+  &.error {
+    border-color: red;
+  }
+  &:focus {
+    background-color: var(--bg-input-focus);
+    outline: none;
+  }
+}

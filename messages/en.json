@@ -1,0 +1,173 @@
+{
+  "ru": "ru",
+  "en": "en",
+  "notfound": {
+    "messageNotFound": "Sorry, but page was not found",
+    "message": "You may have mistyped the address or the page may have moved",
+    "link": "Return Home"
+  },
+  "error": {
+    "message": "Oops!",
+    "link": "Return Home",
+    "description": "Something went wrong..."
+  },
+  "header": {
+    "select": { "language": "Language" },
+    "login": "Sign in",
+    "logout": "Sign out",
+    "signUp": "Sign up"
+  },
+  "loader": {
+    "message": "Loading..."
+  },
+  "main": {
+    "welcomeUser": "Welcome back",
+    "welcome": "Welcome!"
+  },
+  "footer": { "year": "year" },
+  "component": { "input": "Input" },
+  "form": {
+    "title": { "signUp": "Sign up", "signIn": "Sign in" },
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "button": {
+      "signUp": "Sign up",
+      "signIn": "Sign in",
+      "google": "Sign in with Google"
+    },
+    "subtitle": {
+      "signUp": "If you already have an account, please sign in",
+      "signIn": "If you don't have an account yet, please register",
+      "google": "Or continue with your Google account"
+    },
+    "error": {
+      "name": {
+        "required": "Name is required",
+        "capitalized": "The first letter of the name must be capitalized"
+      },
+      "email": {
+        "required": "Email is required",
+        "format": "Invalid email format"
+      },
+      "password": {
+        "required": "Password is required",
+        "content": "Password must have at least one letter, one digit, one special character",
+        "length": "Password must be at least 8 characters long"
+      },
+      "confirmPassword": {
+        "required": "Password is required",
+        "match": "Passwords do not match"
+      }
+    }
+  },
+  "dashboard": {
+    "restful": "RESTful Client",
+    "history": "Query history",
+    "variables": "Variables"
+  },
+  "firestore": {
+    "error": {
+      "firestoreSave": "Error saving to Firestore",
+      "unknown": "Unknown Error"
+    }
+  },
+  "history": {
+    "title": "History Requests",
+    "noRequests": "You haven't executed any requests yet",
+    "errorParsingHistory": "Error parsing history",
+    "errorParsingHeaders": "Error parsing headers",
+    "errorHistoryCleared": "Error clearing history data",
+    "historyCleared": "History cleared",
+    "clearHistory": "Clear history",
+    "columnsName": {
+      "duration": "Duration",
+      "statusCode": "Status Code",
+      "timestamp": "Timestamp",
+      "method": "Method",
+      "requestSize": "Request Size",
+      "responseSize": "Response Size",
+      "error": "Error Details",
+      "endpoint": "Endpoint"
+    }
+  },
+  "restful": {
+    "title": "RESTful Client",
+    "method": "Method",
+    "endpoint": "Endpoint URL",
+    "requestBody": "Request Body",
+    "headers": "Headers",
+    "sendRequest": "Send Request",
+    "response": "Response",
+    "status": "Status",
+    "responseBody": "Response Body",
+    "variables": "Variables",
+    "invalidJson": "Infalid JSON format",
+    "unknownError": "Unknown Error",
+    "invalidHeadersJson": "Invalid JSON format in headers",
+    "invalidVariablesJson": "Invalid JSON format in variables",
+    "invalidRequestBodyJson": "Invalid JSON format in request body"
+  },
+  "auth": {
+    "success": {
+      "signin": "Successful sign in",
+      "signup": "Successful sign up",
+      "signinGoogle": "Successful login via Google account",
+      "signout": "You signed out. See you soon!"
+    },
+    "error": {
+      "signin": "Invalid email or password, please try again",
+      "signup": {
+        "failed": "Registration failed, please try again later",
+        "userExists": "An account with the same email already exists"
+      },
+      "database": "An error occurred while retrieving information from the database",
+      "google": "Google sign in failed",
+      "unknown": "An unknown error occurred",
+      "token": "Firebase session token expired"
+    }
+  },
+  "aboutProject": "We built a lightweight alternative to Postman using React 18 and a modern framework. The application features user registration and authentication, a full REST client with method selection, URL input, request and headers editor, as well as response viewer and code generation. We also implemented request history and variable support to make the tool more practical for everyday use. The project is written in TypeScript, covered with tests ensuring at least 80% coverage, and includes private routes, a 404 page, and an error boundary. We configured linting, formatting, and Husky hooks to maintain code quality. Development was carried out by a team of three members following a Git workflow, and the final application is deployed on a public hosting platform.",
+  "project": "About project",
+  "course": "Course",
+  "aboutCourse": "The ReactJS course at RS School is a free training program where students learn modern React development with TypeScript. The course covers hooks, state management, routing, testing, and application optimization. The learning process is based on practice and assignments, culminating in a final project and a certificate.",
+  "ksusha": "Kseniya",
+  "maxim": "Maxim",
+  "sasha": "Alexandra",
+  "restClient": {
+    "queryErrorMessages": {
+      "cors": "CORS Error: The server rejected the request due to security policy.",
+      "network": "Network error. Check your connection or try again later.",
+      "timeout": "Request timed out.",
+      "unknownError": "Unknown error. Please try again.",
+      "400500": "Client error {{status}} {{statusText}}. Check the URL or query parameters.",
+      "more500": "Client error {{status} {{statusText}}. Try again later.",
+      "somethingWrong": "Something went wrong."
+    },
+    "restClientPage": {
+      "send": "Send",
+      "headers": "Headers:",
+      "addHeader": "add header",
+      "body": "Body:",
+      "bodyError": "Please fill in the URL field",
+      "response": "Response:",
+      "status": "Status:",
+      "code": "Code:",
+      "enterUrl": "Enter URL",
+      "key": "key",
+      "value": "value",
+      "deleteHeader": "delete",
+      "prettify": "prettify",
+      "bodyPlaceholder": "enter in json format",
+      "invalidJson": "Invalid JSON"
+    },
+    "variables": {
+      "variables": "Variables:",
+      "add": "add",
+      "variable": "variable",
+      "value": "value",
+      "delete": "delete"
+    }
+  }
+}
