@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import s from './ComponentSlider.module.scss';
 
-interface ComponentSliderProps {
+export interface ComponentSliderProps {
   slides: React.ReactElement[];
 }
 
