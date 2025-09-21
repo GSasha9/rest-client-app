@@ -97,6 +97,7 @@ const SignUpForm = () => {
                     {...register('name')}
                     autoComplete="name"
                     size="small"
+                    data-testid="sign-up-name"
                   />
                   {errors?.name && (
                     <Typography
@@ -123,6 +124,7 @@ const SignUpForm = () => {
                     {...register('email')}
                     autoComplete="email"
                     size="small"
+                    data-testid="sign-up-email"
                   />
                   {errors?.email && (
                     <Typography
@@ -165,6 +167,7 @@ const SignUpForm = () => {
                       </InputAdornment>
                     }
                     label={t('form.password')}
+                    data-testid="sign-up-password"
                   />
                   {errors?.password && (
                     <Typography
@@ -193,6 +196,7 @@ const SignUpForm = () => {
                   </InputLabel>
                   <OutlinedInput
                     id="confirmPassword"
+                    data-testid="sign-up-confirm-password"
                     type={showConfirmPassword ? 'text' : 'password'}
                     {...register('confirmPassword')}
                     autoComplete="current-password"
@@ -236,6 +240,7 @@ const SignUpForm = () => {
                   fullWidth
                   disabled={!isValid}
                   color="info"
+                  data-testid="sign-up-button"
                 >
                   {t('form.button.signUp')}
                 </Button>
