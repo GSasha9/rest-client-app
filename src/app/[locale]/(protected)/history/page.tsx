@@ -5,21 +5,21 @@ import HistoryAnalyticsServerWrapper from '../../../../components/HistoryAnalyti
 
 export default async function HistoryAnalyticsPage() {
   const user = await tockenCheck();
-
-  if (!user) return;
+  const t = await getTranslations('history');
 
   const data = await fetchUserAnalytics(user.uid);
 
-  const t = await getTranslations('history.columnsName');
+  if (data.length === 0) return <div>{t('noRequests')}</div>;
+
   const columnHeaders = [
-    t('duration'),
-    t('statusCode'),
-    t('timestamp'),
-    t('method'),
-    t('requestSize'),
-    t('responseSize'),
-    t('error'),
-    t('endpoint'),
+    t('columnsName.duration'),
+    t('columnsName.statusCode'),
+    t('columnsName.timestamp'),
+    t('columnsName.method'),
+    t('columnsName.requestSize'),
+    t('columnsName.responseSize'),
+    t('columnsName.error'),
+    t('columnsName.endpoint'),
   ];
 
   return (
