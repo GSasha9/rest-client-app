@@ -34,11 +34,7 @@ export default async function Layout({
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
               <Header />
-              <div className="wrapper-app">
-                {/* <ErrorBoundary fallback={<ComponentError />}> */}
-                {children}
-                {/* </ErrorBoundary> */}
-              </div>
+              <div className="wrapper-app">{children}</div>
               <Footer />
               <ToastifyNotification />
             </ThemeProvider>

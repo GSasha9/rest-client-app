@@ -12,7 +12,7 @@ describe('performRequest', () => {
     expect(result.body).toContain('ok');
   });
 
-  it('успешно POST запрос', async () => {
+  it('successful POST request', async () => {
     const result = await performRequest({
       method: 'POST',
       url: 'https://example.com/post',
@@ -32,14 +32,4 @@ describe('performRequest', () => {
     expect(result.status).toBe(500);
     expect(result.body).toBe('Internal Server Error');
   });
-
-  // it('network error', async () => {
-  //   const result = await performRequest({
-  //     method: 'GET',
-  //     url: 'https://example.com/network-error',
-  //   });
-  //   expect(result.ok).toBe(false);
-  //   expect(result.status).toBe(0);
-  //   expect(result.error).toBe('Failed to connect');
-  // });
 });
