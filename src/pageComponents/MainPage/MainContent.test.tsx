@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+import MainContent from './MainContent';
+import { ComponentSliderProps } from '../../components/ComponentSlider/ComponentSlider';
 
 vi.mock('@/components/ComponentSlider/ComponentSlider', () => ({
   __esModule: true,
-  default: ({ slides }: any) => (
+  default: ({ slides }: ComponentSliderProps) => (
     <div data-testid="component-slider">{slides}</div>
   ),
 }));
@@ -17,8 +19,6 @@ vi.mock('@/components/ProjectAndCourse/ProjectAndCourse', () => ({
   __esModule: true,
   default: () => <div>ProjectAndCourse Component</div>,
 }));
-
-import MainContent from './MainContent';
 
 describe('MainContent', () => {
   it('renders ComponentSlider with two slides', () => {

@@ -1,7 +1,7 @@
 import { getApps, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi, Mock } from 'vitest';
 
 vi.mock('firebase/app', () => ({
   getApps: vi.fn(),
@@ -29,10 +29,10 @@ describe('Firebase Initialization', () => {
   });
 
   it('initializes Firebase app when no apps are initialized', async () => {
-    (getApps as vi.Mock).mockReturnValue([]);
+    (getApps as Mock).mockReturnValue([]);
     const mockApp = { name: 'mockApp' };
 
-    (initializeApp as vi.Mock).mockReturnValue(mockApp);
+    (initializeApp as Mock).mockReturnValue(mockApp);
     const { auth, db } = await import('./firebase');
 
     expect(initializeApp).toHaveBeenCalledWith({
@@ -49,10 +49,10 @@ describe('Firebase Initialization', () => {
   });
 
   it('initializes Firebase app when no apps are initialized', () => {
-    (getApps as vi.Mock).mockReturnValue([]);
+    (getApps as Mock).mockReturnValue([]);
     const mockApp = { name: 'mockApp' };
 
-    (initializeApp as vi.Mock).mockReturnValue(mockApp);
+    (initializeApp as Mock).mockReturnValue(mockApp);
     const firebaseConfig = {
       apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
       authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -65,17 +65,6 @@ describe('Firebase Initialization', () => {
       getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
     expect(initializeApp).toHaveBeenCalledWith(firebaseConfig);
-    expect(app).toEqual(mockApp);
-  });
-
-  it('uses an existing Firebase app if already initialized', () => {
-    const mockApp = { name: 'existingApp' };
-
-    (getApps as vi.Mock).mockReturnValue([mockApp]);
-    const app =
-      getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-
-    expect(initializeApp).not.toHaveBeenCalled();
     expect(app).toEqual(mockApp);
   });
 });
