@@ -81,7 +81,7 @@ const Header: React.FC = () => {
   ];
 
   const shouldHideNav = currentRoute
-    ? hiddenRoutes.includes(currentRoute) || isSmallScreen
+    ? hiddenRoutes.includes(`/${currentRoute}`) || isSmallScreen
     : null;
 
   return (
