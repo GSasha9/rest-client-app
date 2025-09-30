@@ -52,9 +52,8 @@ const getStyles = (fixed: boolean) => ({
 const Header: React.FC = () => {
   const [fix, setFix] = useState(false);
   const styles = getStyles(fix);
-  const pathname = usePathname();
-
-  const currentRoute = pathname.split('/').pop();
+  const pathname = usePathname() || '';
+  const currentRoute = pathname.split('/').pop() || '';
 
   const isSmallScreen = useMediaQuery((t: Theme) => t?.breakpoints.down('md'));
 
@@ -73,15 +72,15 @@ const Header: React.FC = () => {
   }, []);
 
   const hiddenRoutes = [
-    ROUTES.MAIN_PAGE,
-    ROUTES.SIGN_IN,
-    ROUTES.SIGN_UP,
+    ROUTES.MAIN_PAGE.replace('/', ''),
+    ROUTES.SIGN_IN.replace('/', ''),
+    ROUTES.SIGN_UP.replace('/', ''),
     'ru',
     'en',
   ];
 
   const shouldHideNav = currentRoute
-    ? hiddenRoutes.includes(`/${currentRoute}`) || isSmallScreen
+    ? hiddenRoutes.includes(currentRoute) || isSmallScreen
     : null;
 
   return (
