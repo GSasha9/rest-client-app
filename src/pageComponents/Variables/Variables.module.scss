@@ -1,0 +1,47 @@
+@use '../../styles/variables' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.wrapper {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px;
+  background-color: var(--bg-card);
+  box-shadow: 3px 3px 4px var(--bg-card-shadow);
+  border-radius: 4px;
+  gap: 26px;
+}
+
+.variable-item {
+  display: flex;
+  gap: 20px;
+}
+.key-value {
+  display: flex;
+  gap: 6px;
+}
+
+.input {
+  font-size: 18px;
+  width: 100%;
+  padding: 6px 6px;
+  border: 1px solid var(--ava-border);
+  border-radius: 4px;
+  color: var(--text-color-accent);
+
+  background-color: var(--bg-input);
+  box-shadow: inset 2px 2px 1px 1px var(--shadow-input);
+  &.error {
+    border-color: red;
+  }
+  &:focus {
+    background-color: var(--bg-input-focus);
+    outline: none;
+  }
+}

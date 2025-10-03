@@ -1,0 +1,179 @@
+:root {
+  --bg-card: rgb(243 237 191);
+  --bg-card-shadow: rgb(189 183 137);
+  --bg-card-shadow-inactive: rgba(243, 237, 191, 0.4);
+  --bg-flyout-shadow: rgb(219 167 98);
+  --bg-body: rgb(238 198 134);
+  --ava-border: rgb(144 142 121);
+  --text-color-accent: rgb(111 102 91);
+  --text-color-neutral: rgb(124 120 115);
+  --text-flyout-color: rgb(112 49 21);
+  --text-color-dark: rgb(79 65 59);
+  --text-input: rgb(71 55 48);
+  --border-input: rgb(204 125 46);
+  --bg-input: rgb(255 242 229);
+  --bg-input-focus: rgb(252, 250, 246);
+  --shadow-input: rgb(169 169 169);
+  --border-bnt-default: #8a683e;
+  --text-bnt-default: rgb(79 65 59);
+  --bg-btn-default: rgb(176 149 130);
+  --shadow-btn-default: #6f5331;
+  --shadow-btn-default-active: #6f5331;
+  --border-btn-disabled: rgb(151 150 149);
+  --text-btn-disabled: rgb(121 121 121);
+  --bg-btn-disabled: rgba(174, 170, 163, 0.6);
+  --btn-hover: rgb(31, 30, 30);
+  --border-btn-light: #b3946d;
+  --text-btn-light: rgb(105 97 91);
+  --bg-btn-light: rgb(228 210 198);
+  --shadow-btn-light: #987f61;
+  --border-btn-error: #8a683e;
+  --text-btn-error: rgb(94 30 20);
+  --text-error: rgb(147, 27, 8);
+  --bg-btn-error: rgb(197 151 134);
+  --shadow-btn-error: #6f5331;
+  --bg-header: rgb(215 136 57);
+  --border-spinner: #bd7731;
+  --bg-spinner-content: #d08e23;
+  --text-pagination: rgb(105 97 91);
+  --textarea-inactive: rgb(219, 216, 212);
+  --textarea-text-inactive: rgb(167, 149, 125);
+}
+
+.dark {
+  --bg-card: rgb(136 120 57);
+  --bg-card-shadow: rgb(107 65 20);
+  --bg-flyout-shadow: rgb(135 113 90);
+  --bg-body: rgb(164 169 174);
+  --ava-border: rgb(80 73 6);
+  --text-color-accent: rgb(250 215 172);
+  --text-color-neutral: rgb(214 197 176);
+  --text-flyout-color: rgb(58 19 3);
+  --text-color-dark: rgb(60 50 46);
+  --text-input: rgb(219 193 182);
+  --border-input: rgb(150 83 17);
+  --bg-input: rgb(90 80 62);
+  --bg-input-focus: rgb(9 9 9);
+  --shadow-input: rgb(58 58 58);
+  --border-bnt-default: #584937;
+  --text-bnt-default: rgb(190 177 166);
+  --bg-btn-default: rgb(99 83 69);
+  --shadow-btn-default: #685741;
+  --border-btn-disabled: rgb(151 150 149);
+  --text-btn-disabled: rgb(121 121 121);
+  --bg-btn-disabled: rgb(151 150 149);
+  --btn-hover: rgb(200 132 72);
+  --border-btn-light: #5d4c39;
+  --text-btn-light: rgb(190 177 166);
+  --bg-btn-light: rgb(125 100 80);
+  --shadow-btn-light: #685741;
+  --border-btn-error: #51473a;
+  --text-btn-error: rgb(174 126 117);
+  --bg-btn-error: rgb(69 53 46);
+  --shadow-btn-error: #685741;
+  --bg-header: rgb(141 105 43);
+  --border-spinner: #bd7731;
+  --bg-spinner-content: #d08e23;
+  --text-pagination: rgb(218 202 191);
+}
+
+$header-height: 70px;
+$footer-height: 70px;
+
+$spacing-xxs: 2px;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+$border-radius-input: 5px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-circle: 50%;
+
+$font-size-error-message: 12px;
+$font-size-regular: 14px;
+$font-size-button-cards: 16px;
+$font-size-h1: 70px;
+$font-size-h2: 30px;
+$font-size-h3: 20px;
+$font-size-h4: 18px;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-loose: 1.8;
+
+$transition-fast: 0.2s;
+$transition-normal: 0.3s;
+$transition-slow: 0.5s;
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+$breakpoint-xs: 0;
+$breakpoint-s: 460px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+@mixin respond-xs {
+  @media screen and (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+@mixin respond-s {
+  @media screen and (min-width: $breakpoint-s) {
+    @content;
+  }
+}
+
+@mixin respond-sm {
+  @media screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin respond-md {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin respond-lg {
+  @media screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin respond-xl {
+  @media screen and (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin respond-xxl {
+  @media screen and (min-width: $breakpoint-xxl) {
+    @content;
+  }
+}
+
+$container-sm: 540px;
+$container-md: 720px;
+$container-lg: 960px;
+$container-xl: 1140px;
+$container-xxl: 1320px;

@@ -1,0 +1,45 @@
+@use '../../styles/variables' as *;
+
+.inactive {
+  position: relative;
+  background-color: var(--bg-card-shadow-inactive);
+}
+.error-text {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--textarea-text-inactive);
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+.json-error {
+  color: red;
+}
+.textarea {
+  cursor: text;
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--ava-border);
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--text-color-accent);
+
+  background-color: var(--bg-input);
+  box-shadow: inset 2px 2px 1px 1px var(--shadow-input);
+
+  &:focus {
+    background-color: var(--bg-input-focus);
+    outline: none;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--textarea-text-inactive);
+    background-color: transparent;
+  }
+}

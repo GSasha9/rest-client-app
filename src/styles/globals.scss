@@ -1,0 +1,104 @@
+@use './variables.module.scss';
+@use './variables' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+body {
+  font-weight: normal;
+}
+
+.wrapper-app {
+  background-color: var(--bg-body);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 30px 0;
+  min-height: calc(100vh - $header-height - $footer-height);
+  color: var(--text-color-accent);
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px;
+  background-color: var(--bg-card);
+  box-shadow: 3px 3px 4px var(--bg-card-shadow);
+  border-radius: 4px;
+  gap: 4px;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.default-btn {
+  cursor: pointer;
+  padding: 4px 8px;
+  color: var(--text-color-accent);
+  border: 1px solid var(--border-bnt-default);
+  background-color: rgb(187, 194, 171);
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  box-shadow: 1px 1px 0 var(--shadow-btn-light);
+
+  &:active {
+    background-color: var(--bg-btn-default);
+    box-shadow: 0 0 0 var(--shadow-btn-light);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid var(--border-btn-disabled);
+    color: var(--text-btn-disabled);
+    background: var(--bg-btn-disabled);
+  }
+
+  &:not(:disabled):hover {
+    color: var(--text-flyout-color);
+  }
+}
+.accent-btn {
+  cursor: pointer;
+  padding: 4px 8px;
+  border: 1px solid var(--border-btn-light);
+  color: var(--text-color-accent);
+  background: var(--bg-btn-light);
+  transition: all 0.2s ease;
+  border-radius: 4px;
+
+  &:active {
+    background-color: var(--bg-btn-default);
+    border: 1px solid var(--bg-btn-default);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid var(--border-btn-disabled);
+    color: var(--text-btn-disabled);
+    background: var(--bg-btn-disabled);
+  }
+
+  &:not(:disabled):hover {
+    color: var(--text-flyout-color);
+  }
+}
+
+.title-h4 {
+  font-weight: 400;
+}
