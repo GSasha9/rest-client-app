@@ -3,7 +3,7 @@
 import { LANGUAGES } from '@/shared/constants/languages';
 import codeGenerator from '@/utils/code-generator';
 import { Box, Tabs, Tab } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactCodeMirror from '@uiw/react-codemirror';
 import './CodeSnippet.scss';
 import { RestData } from '../../models/rest-client';
@@ -18,30 +18,36 @@ const CodeSnippet = ({ data }: CodeSnippetProps) => {
   const [result, setResult] = useState('');
   const [value, setValue] = useState<string>(LANGUAGES.jsFetch.label);
 
-  const handleChange = (_: React.SyntheticEvent, newValue: string) => {
-    if (newValue === '') return;
+  useEffect(() => {
+    const generate = async () => {
+      const snippet = await codeGenerator({
+        ...data,
+        convertTo: LANGUAGES.jsFetch,
+      });
+
+      setResult(snippet);
+    };
+
+    generate();
+  }, [data]);
+
+  const handleChange = async (_: React.SyntheticEvent, newValue: string) => {
+    if (!newValue) return;
 
     setValue(newValue);
 
-    const convertTo = {
-      language: '',
-      variant: '',
-    };
+    const languageEntry = Object.values(LANGUAGES).find(
+      (lang) => lang.label === newValue
+    );
 
-    Object.keys(LANGUAGES).map((el) => {
-      const key = el as keyof typeof LANGUAGES;
+    if (!languageEntry) return;
 
-      if (LANGUAGES[key].label === newValue) {
-        convertTo.language = LANGUAGES[key].language;
-        convertTo.variant = LANGUAGES[key].variant;
-      }
+    const snippet = await codeGenerator({
+      ...data,
+      convertTo: languageEntry,
     });
 
-    const newData = { ...data, convertTo };
-
-    const result = codeGenerator(newData);
-
-    setResult(result);
+    setResult(snippet);
   };
 
   return (
